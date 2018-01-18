@@ -1,3 +1,0 @@
-# About
-
-`Aku coba merubanya`
