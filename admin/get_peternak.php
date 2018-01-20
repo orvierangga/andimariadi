@@ -6,7 +6,7 @@ include '../conn.php';?>
     <tr>
       <th>ID Peternak</th>
       <th>Nama Peternak</th>
-	  <th>Lokasi</th>
+
 	  <th>Alamat</th>
 	  <th>Tanggal Lahir</th>
 	  <th>Nomor KTP</th>
@@ -20,7 +20,7 @@ include '../conn.php';?>
 
        if (isset($_GET['s'])) {
         $search = $_GET['s'];
-        $sql = mysqli_query($koneksi, "SELECT * from `tbpeternak` WHERE `IDPeternak` LIKE '%{$search}%' OR `NamaPeternak` LIKE '%{$search}%' OR `Lokasi` LIKE '%{$search}%' OR `Alamat` LIKE '%{$search}%' OR `TanggalLahir` LIKE '%{$search}%' OR `NoKTP` LIKE '%{$search}%' order by `IDPeternak` ASC");
+        $sql = mysqli_query($koneksi, "SELECT * from `tbpeternak` WHERE `IDPeternak` LIKE '%{$search}%' OR `NamaPeternak` LIKE '%{$search}%' OR `Alamat` LIKE '%{$search}%' OR `TanggalLahir` LIKE '%{$search}%' OR `NoKTP` LIKE '%{$search}%' order by `IDPeternak` ASC");
           } else {
           $sql = mysqli_query($koneksi, "SELECT * FROM `tbpeternak` order by `IDPeternak` asc");
           }
@@ -39,7 +39,6 @@ include '../conn.php';?>
 		  <td>'.$data[2].'</td>
 		  <td>'.$data[3].'</td>
 		  <td>'.$data[4].'</td>
-		  <td>'.$data[5].'</td>
 		  
 
 		<td><a href="editpeternak.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 

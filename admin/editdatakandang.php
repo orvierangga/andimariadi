@@ -32,10 +32,11 @@ if (isset($_POST['edt'])) {
 	
 	$idp = $_POST['idp'];
 	$idjk = $_POST['idjk'];	
+	$l = $_POST['l'];	
 	$cek = mysqli_query($koneksi, "select * from tbdatakandang where IDDataKandang='$data[0]'"); //cek data yg mau diedit
 	
   if (mysqli_num_rows($cek) !=0) {
-		$edit = mysqli_query($koneksi, "UPDATE `tbdatakandang` set  `IDPeternak`='$idp',`IDJenisKandang`='$idjk' where `IDDataKandang`='$ud1'") 
+		$edit = mysqli_query($koneksi, "UPDATE `tbdatakandang` set  `IDPeternak`='$idp',`IDJenisKandang`='$idjk', `Lokasi`='$l' where `IDDataKandang`='$ud1'") 
 		or die (mysqli_error());
 		
 				if($edit) {
@@ -80,6 +81,9 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 						echo '<option value="' . $dat2[0]. '">' . $dat2[0].'. Luas = '.$dat2[1].' Meter - Kapasitas = '.$dat2[2].'</option>';
 						} ?>
 						</select>
+						
+						 <label>Lokasi Kandang</label>
+                        <input  class="form-control form-white"   name="l" value="<?php echo $data[3];?>" >
                          <!-- /.form input pada modal-->
 			          
 								 <p></p>

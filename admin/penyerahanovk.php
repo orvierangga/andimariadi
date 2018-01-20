@@ -7,7 +7,7 @@ include '../conn.php';?>
                 <!-- Page Heading -->
                 <div class="row">
                 <div class="col-lg-12">
-                <h1 class="page-header">Data Bibit <small>Penyerahan Bibit Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
+                <h1 class="page-header">Data Penyerahan OVK <small>Penyerahan OVK (Obat Vaksin Kimia)</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
                 <i class="fa fa-desktop"></i> Data Penyerahan</a></li>
@@ -115,13 +115,13 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
         <label>ID Produksi</label>
         <input  class="form-control form-white" name="ip" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >
         
-         <select class="form-control" span="label label-success" name="idp"  id="jenis" required="required">
+         <select class="form-control" span="label label-success" name="idp" required="required">
 		<option required="required" value="">-- Pilih Data Peternak --</option>
 		<?php
-			$q = mysqli_query ($koneksi, "select * from `tbdatakandang` order by `IDDataKandang` ASC");
+			$q = mysqli_query ($koneksi, "select * from `tbpeternak` order by `IDPeternak` ASC");
 			while ($dat = mysqli_fetch_array ($q)) {
-			echo '<option value="'. $dat['IDPeternak'].'">' . $dat[0].'. '.$dat[1].'  ('.$dat[2].')</option>';
-			}
+			echo '<option value="' . $dat[0]. '">' . $dat[0].'. Nama Peternak = '.$dat[1].' - Lokasi = '.$dat[2].'</option>';
+			}	
 		?>
 		</select>
 
@@ -166,9 +166,15 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		<input type="radio" name="k" value="Tidak Normal"> Tidak Normal <br/>
 		 </br>
 		
-		<label>Kandang</label>
-       <input type="int" class="form-control" name="idk" placeholder="Masukkan Angka" id="nama_anu" required="" >
-        
+        <select class="form-control " span="label label-success" name="idk" required="required">
+		<option required="required" value="">-- Pilih Data Kandang --</option>
+		<?php
+			$k = mysqli_query ($koneksi, "select * from `tbdatakandang` order by `IDDataKandang` ASC");
+			while ($dat3 = mysqli_fetch_array ($k)) {
+			echo '<option value="' . $dat3[0]. '">' . $dat3[0].'. Pemilik : '.$dat3[1].'</option>';
+			}
+		?>
+		</select>
 	
 	
             <p></p>   <!-- /.Jarak -->
@@ -215,44 +221,6 @@ function confirm_delete() {
           alert('Tidak Ada Data');
         }
       }) 
-    });
-  })
-</script>
-
-
-
-<!--//.koding js query pemanggilan data pada combo-->
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#jenis").on("change", function() {
-      var data = $(this).val();
-      //alert(data);
-      if (data == 'IDPeternak') {
-        $.ajax({
-          type: 'POST',
-          url: 'combopeternak.php',
-          data: 'data=' + data,
-          success:function(data) {
-            $("#nama_anu").html(data);
-          }
-        })
-        //alert('sip')
-      } 
-    });
-
-    $("#nama_anu").on("click", function() {
-      var data = $("#jenis").val();
-      var nama = $(this).val();
-      //alert(data);
-      $.ajax({
-        type: 'POST',
-        url: 'combopeternakdata.php',
-        data: 'data=' + data +'&nama=' + nama,
-        success:function(data) {
-          $("#nama").val(data);
-          //alert(data);
-        }
-      });
     });
   })
 </script>

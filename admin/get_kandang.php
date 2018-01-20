@@ -6,7 +6,9 @@ include '../conn.php';?>
     <tr>
       <th>ID Data Kandang</th>
       <th>ID Peternak</th>
-	  <th>ID Jenis Kandang</th>
+	  <th>Luas Kandang</th>
+	  <th>Kapasitas</th>
+	  <th>Lokasi</th>
 	 
       <th>Pilihan</th>
 	 </tr>
@@ -22,9 +24,9 @@ include '../conn.php';?>
 
        if (isset($_GET['s'])) {
         $search = $_GET['s'];
-        $sql = mysqli_query($koneksi, "SELECT * from `tbdatakandang` WHERE `IDDataKandang` LIKE '%{$search}%' OR `IDPeternak` LIKE '%{$search}%' OR `IDJenisKandang` LIKE '%{$search}%' order by `IDDataKandang` ASC");
+        $sql = mysqli_query($koneksi, "SELECT `tbdatakandang` .*, `tbjeniskandang`.`IDJenisKandang`,`tbjeniskandang`.`LuasKandang`,`tbjeniskandang`.`Kapasitas` FROM `tbdatakandang` LEFT JOIN `tbjeniskandang` ON `tbdatakandang`.`IDJenisKandang` = `tbjeniskandang`.`IDJenisKandang` WHERE `tbdatakandang`.`IDDataKandang` LIKE '%{$search}%' OR `tbdatakandang`.`IDPeternak` LIKE '%{$search}%' OR `tbjeniskandang`.`LuasKandang` LIKE '%{$search}%' OR `tbjeniskandang`.`Kapasitas` LIKE '%{$search}%' OR `tbdatakandang`.`Lokasi` LIKE '%{$search}%' order by `tbdatakandang`.`IDDataKandang` ASC");
           } else {
-          $sql = mysqli_query($koneksi, "SELECT * FROM `tbdatakandang` order by `IDDataKandang` asc");
+          $sql = mysqli_query($koneksi, "SELECT `tbdatakandang` .*, `tbjeniskandang`.`IDJenisKandang`,`tbjeniskandang`.`LuasKandang`,`tbjeniskandang`.`Kapasitas` FROM `tbdatakandang` LEFT JOIN `tbjeniskandang` ON `tbdatakandang`.`IDJenisKandang` = `tbjeniskandang`.`IDJenisKandang` order by `tbdatakandang`.`IDDataKandang` asc");
           }
       
       if (mysqli_num_rows($sql) == 0) {
@@ -38,7 +40,10 @@ include '../conn.php';?>
            
           <td>'.$data[0].'</td>
           <td ><a href="datapeternak.php?id='.$data[1].'" <span class="glyphicon glyphicon-user"></span></a> '.$data[1].'</td>
-		  <td ><a href="jeniskandang2.php?id='.$data[2].'" class="label label-success">'.$data[2].'</a></td>
+		  
+		   <td >'.$data[5].'</td>
+		    <td >'.$data[6].'</td>
+			<td >'.$data[3].'</td>
 		  
 		<td><a href="editdatakandang.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
           <a href="?del='.$data[0].'" class="btn-danger btn-sm" ><span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm(\'Hapus data ini?\')"></span></a></td>

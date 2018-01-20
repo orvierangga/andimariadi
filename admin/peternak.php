@@ -10,7 +10,9 @@ include '../conn.php';?>
                 <h1 class="page-header">Data Peternak <small>Biodata Peternak</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
-                <i class="fa fa-users"></i> Data Peternak</li>
+                <i class="fa fa-users"></i> Data Peternak</a></li>
+                <i class="fa fa-desktop"></i><a href="Kandang.php"> Data Kandang</a></li>
+				<i class="fa fa-desktop"></i><a href="jeniskandang.php"> Data Jenis Kandang</a></li>
                 </ol>
                 </div>
                 </div>
@@ -37,7 +39,7 @@ if (isset($_GET['del'])) {
 ?>
  <!-- form grup dan modal -->
   <div class="form-group">
-  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Tambah Data</a>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Tambah Data Peternak</a>
     
   </div>  
    
@@ -75,14 +77,14 @@ $ed ="PTR".$tambah;
 if (isset($_POST['add'])) {
 	$idp = $_POST['idp'];
 	$nama = $_POST['nama'];
-	$lokasi = $_POST['lokasi'];
+	
 	$alamat = $_POST['alamat'];
 	$tgllahir = $_POST['tgllahir'];
 	$noktp = $_POST['noktp'];
 	
   if ($idp != '') {
-		$insert = mysqli_query($koneksi, "INSERT INTO tbpeternak (`IDPeternak`, `NamaPeternak`,`Lokasi`,`Alamat`,`TanggalLahir`,`NoKTP`) 
-		VALUES ('$idp','$nama','$lokasi','$alamat','$tgllahir','$noktp')") or die(mysqli_error());
+		$insert = mysqli_query($koneksi, "INSERT INTO tbpeternak (`IDPeternak`, `NamaPeternak`,`Alamat`,`TanggalLahir`,`NoKTP`) 
+		VALUES ('$idp','$nama','$alamat','$tgllahir','$noktp')") or die(mysqli_error());
 		
 				if($insert) {
 			echo '<script type="text/javascript">alert("Data Berhasil disimpan") </script>';
@@ -111,8 +113,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
         <input  class="form-control form-white" name="idp" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >               
         <label>Nama Peternak</label>
         <input  class="form-control form-white"  name="nama" required="Tidak Boleh Kosong" placeholder="Enter text">		
-		<label>Lokasi</label>
-        <input  class="form-control form-white"  name="lokasi" required="Tidak Boleh Kosong" placeholder="Enter text">					
+							
 		<label>Alamat</label>
         <input  class="form-control form-white"  name="alamat" required="Tidak Boleh Kosong" placeholder="Enter text">
 		<label>Tanggal Lahir</label>

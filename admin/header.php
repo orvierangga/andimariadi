@@ -104,12 +104,9 @@ include "seslogin.php";?>
             <li>
             <a  href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-list-alt fa-lg"></i> Master Data<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo" class="collapse">
-            <li><a href="strain.php"><i class="fa fa-list fa-fw"></i> Strain Ayam</a></li>
-			<li><a href="pakan.php"><i class="fa fa-list fa-fw"></i> Pakan Ayam</a></li>
-			<li><a href="ovk.php"><i class="fa fa-list fa-fw"></i> Obat Vaksin Kimia</a></li>
+          
 			<li><a href="peternak.php"><i class="fa fa-list fa-fw"></i> Peternak</a></li>
-			<li><a href="supplier.php"><i class="fa fa-list fa-fw"></i> Supplier</a></li>
-			<li><a href="kandang.php"><i class="fa fa-list fa-fw"></i> Data Kandang</a></li>
+			
 			<li><a href="panen.php"><i class="fa fa-bar-chart fa-fw"></i> Data Panen</a></li>
 			<li><a href="pemeliharaan.php"><i class="fa fa-list fa-fw"></i> Pemeliharaan</a></li>
 			<li><a href="pem_harian.php"><i class="fa fa-calendar fa-fw"></i> Pemeliharaan Harian</a></li>
@@ -121,8 +118,8 @@ include "seslogin.php";?>
             <ul id="demo1" class="collapse">
 			<li><a href="pengadaanbibit.php"><i class="fa fa-list fa-fw"></i> Pengadaan Bibit</a></li>
 			<li><a href="penyerahanbibit.php"><i class="fa fa-list fa-fw"></i> Penyerahan Bibit</a></li>
-			<li><a href="data_petugas.php"><i class="fa fa-list fa-fw"></i> Penyerahan Pakan</a></li>
-			<li><a href="data_petugas.php"><i class="fa fa-list fa-fw"></i> Pengadaan OVK</a></li>
+			<li><a href="penyerahanpakan.php"><i class="fa fa-list fa-fw"></i> Penyerahan Pakan</a></li>
+			<li><a href="penyerahanovk.php"><i class="fa fa-list fa-fw"></i> Penyerahan OVK</a></li>
 			</ul>
 			</li>
 			<li><a href="javascript:;"><i class="fa fa-lg fa-info-circle"></i> Bantuan </a></li>		

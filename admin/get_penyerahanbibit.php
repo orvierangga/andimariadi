@@ -50,7 +50,7 @@ include '../conn.php';?>
 		  <td >'.$data[8].'</td> 
 		  <td >'.$data[9].'</td> 
 
-		<td><a href="editpengadaanbibit.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
+		<td><a href="editpenyerahanbibit.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
           <a href="?del='.$data[0].'" class="btn-danger btn-sm" ><span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm(\'Hapus data ini?\')"></span></a></td>
         </tr>';
 		}

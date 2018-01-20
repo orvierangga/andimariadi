@@ -10,6 +10,7 @@ include '../conn.php';?>
                 <h1 class="page-header">Data Kandang <small>Pendataan Kandang Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
+				<i class="fa fa-users"></i><a href="peternak.php">  Data Peternak</a></li>
                 <i class="fa fa-desktop"></i> Data Kandang</a></li>
 				<i class="fa fa-desktop"></i><a href="jeniskandang.php"> Data Jenis Kandang</a></li>
                 </ol>
@@ -77,10 +78,11 @@ if (isset($_POST['add'])) {
 	$idk = $_POST['idk'];
 	$idp = $_POST['idp'];
 	$idjk = $_POST['idjk'];
+	$l = $_POST['l'];
 	
   if ($idk != '') {
-		$insert = mysqli_query($koneksi, "INSERT INTO tbdatakandang (`IDDataKandang`, `IDPeternak`,`IDJenisKandang`) 
-		VALUES ('$idk','$idp','$idjk')") or die(mysqli_error());
+		$insert = mysqli_query($koneksi, "INSERT INTO tbdatakandang (`IDDataKandang`, `IDPeternak`,`IDJenisKandang`,`Lokasi`) 
+		VALUES ('$idk','$idp','$idjk','$l')") or die(mysqli_error());
 		
 				if($insert) {
 			echo '<script type="text/javascript">alert("Data Berhasil disimpan") </script>';
@@ -114,7 +116,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		<?php
 			$q = mysqli_query ($koneksi, "select * from `tbpeternak` order by `IDPeternak` ASC");
 			while ($data = mysqli_fetch_array ($q)) {
-			echo '<option value="' . $data[0]. '">' . $data[0].'. Nama Peternak = '.$data[1].' - Lokasi = '.$data[2].'</option>';
+			echo '<option value="' . $data[0]. '">' . $data[0].'. Nama Peternak = '.$data[1].' - Alamat = '.$data[2].'</option>';
 			}
 			
 		?>
@@ -129,6 +131,9 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 			}
 		?>
 		</select>
+		
+		 <label>Lokasi Kandang</label>
+        <input  class="form-control form-white" name="l" placeholder="Enter text" value="" required>
 			                                
             <p></p>   <!-- /.Jarak -->
        

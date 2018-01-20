@@ -41,7 +41,7 @@
     </script>
 
 	<div class="footerku_cuy">
- <span class=" glyphicon glyphicon-home"> </span> SISTEM INVENTORY WORKSHOP PT. PLN AP2B (PERSERO) WKSKT <span class=" glyphicon glyphicon-road"> </span> Jalan Mistar Cokro Kusomo km 39 Banjarbaru Kalimantan Selatan - <span class=" glyphicon glyphicon-phone-alt">  </span>  Call Center : 021-(5520 0876)
+ <span class=" glyphicon glyphicon-home"> </span> TERNAK AYAM BROILER KEMITRAAN CV. REHOBOT <span class=" glyphicon glyphicon-road"> </span> Komplek Kelurahan Belimbing Raya Tanjung Kab.Tabalong, Kalimantan Selatan - <span class=" glyphicon glyphicon-phone-alt">  </span>  Call Center : 021-(5520 0876)
 
 
 </body>

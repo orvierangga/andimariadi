@@ -10,6 +10,7 @@ include '../conn.php';?>
                 <h1 class="page-header">Data Jenis Kandang <small>Pendataan Kandang Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
+				<i class="fa fa-users"></i><a href="peternak.php">  Data Peternak</a></li>
                 <i class="fa fa-desktop"></i><a href="kandang.php"> Data Kandang</a></li>
 				<i class="fa fa-desktop"></i> Data Jenis Kandang</li>
                 </ol>

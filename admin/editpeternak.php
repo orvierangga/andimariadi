@@ -30,14 +30,13 @@ $data = mysqli_fetch_array ($ubah);
 if (isset($_POST['edt'])) {
 	
 	$nama = $_POST['nama'];
-	$lokasi = $_POST['lokasi'];
 	$alamat = $_POST['alamat'];
 	$tgllahir = $_POST['tgllahir'];
 	$noktp = $_POST['noktp'];
 	$cek = mysqli_query($koneksi, "select * from tbpeternak where IDPeternak='$data[0]'"); //cek data yg mau diedit
 	
   if (mysqli_num_rows($cek) !=0) {
-		$edit = mysqli_query($koneksi, "UPDATE `tbpeternak` set  `NamaPeternak`='$nama',`Lokasi`='$lokasi',`Alamat`='$alamat',`TanggalLahir`='$tgllahir',`NoKTP`='$noktp' where `IDPeternak`='$ud1'") 
+		$edit = mysqli_query($koneksi, "UPDATE `tbpeternak` set  `NamaPeternak`='$nama',`Alamat`='$alamat',`TanggalLahir`='$tgllahir',`NoKTP`='$noktp' where `IDPeternak`='$ud1'") 
 		or die (mysqli_error());
 		
 				if($edit) {
@@ -63,14 +62,12 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
                         <input  class="form-control form-white"   name="1" value="<?php echo $data[0];?>" disabled>
                         <label>Nama Peternak</label>
                         <input  class="form-control form-white"  name="nama" required="dd" value="<?php echo $data[1];?>">
-						<label>Lokasi</label>
-                        <input  class="form-control form-white"  name="lokasi" required="dd" value="<?php echo $data[2];?>">
 						<label>Alamat Peternak</label>
-                        <input  class="form-control form-white"  name="alamat" required="dd" value="<?php echo $data[3];?>">
+                        <input  class="form-control form-white"  name="alamat" required="dd" value="<?php echo $data[2];?>">
 						<label>Tanggal Lahir</label>
-                        <input  class="form-control form-white"  name="tgllahir" type="date" required="dd" value="<?php echo $data[4];?>">
+                        <input  class="form-control form-white"  name="tgllahir" type="date" required="dd" value="<?php echo $data[3];?>">
 						<label>Nomor KTP</label>
-                        <input  class="form-control form-white"  name="noktp" required="dd" value="<?php echo $data[5];?>">
+                        <input  class="form-control form-white"  name="noktp" required="dd" value="<?php echo $data[4];?>">
                          <!-- /.form input pada modal-->
 			          
 								 <p></p>
