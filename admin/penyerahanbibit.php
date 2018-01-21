@@ -167,7 +167,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		 </br>
 		
 		<label>Kandang</label>
-       <input type="int" class="form-control" name="idk" placeholder="Masukkan Angka" id="nama_anu" required="" >
+       <input type="text" class="form-control" name="idk" placeholder="Masukkan Angka" id="nama_anu" required="" >
         
 	
 	
@@ -225,35 +225,19 @@ function confirm_delete() {
 <script type="text/javascript">
   $(document).ready(function(){
     $("#jenis").on("change", function() {
+      var kandang = $("#nama_anu").val();
       var data = $(this).val();
-      //alert(data);
-      if (data == 'IDPeternak') {
-        $.ajax({
-          type: 'POST',
-          url: 'combopeternak.php',
-          data: 'data=' + data,
-          success:function(data) {
-            $("#nama_anu").html(data);
-          }
-        })
-        //alert('sip')
-      } 
-    });
-
-    $("#nama_anu").on("click", function() {
-      var data = $("#jenis").val();
-      var nama = $(this).val();
-      //alert(data);
       $.ajax({
         type: 'POST',
         url: 'combopeternakdata.php',
-        data: 'data=' + data +'&nama=' + nama,
+        data: 'data=' + data,
         success:function(data) {
-          $("#nama").val(data);
+          $("#nama_anu").val(data);
           //alert(data);
         }
       });
     });
+
   })
 </script>
 <?php include 'footer.php';?>
