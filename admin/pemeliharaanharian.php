@@ -15,7 +15,7 @@ $ud1 = $_GET['id'];?>
                 <i class="fa fa-user"></i> Data Pemelihara : ID peternak, nama peternak ,alamat</li></ol>
 				  <ol class="breadcrumb"><li class="active">
 				
-                <i class="fa fa-paste"></i> Nomor Produksi : PR004</li>
+                <i class="fa fa-paste"></i> Nomor Produksi : <?php echo $ud1;?></li>
                 </ol>
                 </div>
                 </div>
@@ -57,7 +57,7 @@ function confirm_delete() {
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $("#reload_data").load('get_pemeliharaanharian.php');
+    $("#reload_data").load('get_pemeliharaanharian.php?id=<?php echo $ud1;?>');
     $("#isi_cari").on("keyup", function() {
       var search = $(this).val();
       
