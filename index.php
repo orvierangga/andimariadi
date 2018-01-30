@@ -35,7 +35,8 @@
     <![endif]-->
 
 </head>
-
+<body background ="img/slide_22.jpg">
+		
 <?php
 date_default_timezone_set('Asia/Jakarta');
 include 'library.php';
@@ -59,7 +60,8 @@ session_start();
 $_SESSION['username']     = $r['username'];
 $_SESSION['password']     = $r['password'];
 $_SESSION['IDuser']=$r['IDuser'];
-$_SESSION['status'];
+$_SESSION['IDPengguna']=$r['IDPengguna'];
+//$_SESSION['status']=$r['status'];
 
 
   $jam = date("H:i:s");
@@ -70,10 +72,10 @@ $_SESSION['status'];
 						
 							$_SESSION['username']=$username;
 							$_SESSION['status']='ADMIN';
-						$_SESSION['IDuser']=$ketemu['IDuser'];
+							$_SESSION['IDuser']=$ketemu['IDuser'];
 							
 							 mysqli_query($koneksi, "INSERT INTO `log_login`(`username`,`jam_msk`,`jam_klr`,`tgl_msk`,`tgl_klr`,`status_log`)
-                           VALUES('$_SESSION[nama_petugas]','$jam','logged','$tgl','---','online')");	
+                           VALUES('$_SESSION[username]','$jam','logged','$tgl','---','online')");	
 						   header("Location: /terabot/admin/index.php");
 						}else {
 							
@@ -83,12 +85,13 @@ $_SESSION['status'];
 							$_SESSION['status']='<?php echo $data[3];?>';
 						$_SESSION['IDuser']=$ketemu['IDuser'];							
 							  mysqli_query($koneksi, "INSERT INTO `log_login`(`username`,`jam_msk`,`jam_klr`,`tgl_msk`,`tgl_klr`,`status_log`)
-                           VALUES('$_SESSION[nama_petugas]','$jam','logged','$tgl','---','online')");	
+                           VALUES('$_SESSION[username]','$jam','logged','$tgl','---','online')");	
 						   header("Location: /terabot/user/index.php");
 						}
 					}
 				}
-				?>
+				?>  
+  
 				
 <!--<H1 align ="center">
   <span class="glyphicon glyphicon-user" aria-hidden="true"></span><a font="50px" href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue"><STRONG>LOGIN</STRONG></a>
@@ -100,13 +103,13 @@ $_SESSION['status'];
 			<div class="modal-content modal-popup">
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>-->
 
-  <body background="#">
+  
 <div class="container" background="img/image_5.jpg">
         <div class="row">
             <div background="img/image_5.jpg" class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default" background="img/image_5.jpg">
                     <div class="panel-heading" background="img/image_5.jpg">
-                        <h3 align="center"  class="panel-title">Masuk </h3>
+                        <h3 align="center"  class="panel-title">Masuk Sistem</h3>
                     </div>
                     <div class="panel-body" background="img/image_5.jpg">
                         <form image="img/image_5.jpg" role="form" action="" method="post">

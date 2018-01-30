@@ -21,9 +21,9 @@ include '../conn.php';?>
 <?php // Coding Hapus
 if (isset($_GET['del'])) {
   $id = $_GET['del'];
-  $cek = mysqli_query($koneksi, "SELECT * FROM tbkandang WHERE `IDDataKandang`='$id'");
+  $cek = mysqli_query($koneksi, "SELECT * FROM tbdatakandang WHERE `IDDataKandang`='$id'");
   if (mysqli_num_rows($cek) > 0) {
-    $delete = mysqli_query($koneksi, "DELETE FROM tbkandang WHERE `IDDataKandang`='$id'");
+    $delete = mysqli_query($koneksi, "DELETE FROM tbdatakandang WHERE `IDDataKandang`='$id'");
     if ($delete) {
       echo '<div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

@@ -7,10 +7,11 @@ include '../conn.php';?>
                 <!-- Page Heading -->
                 <div class="row">
                 <div class="col-lg-12">
-                <h1 class="page-header">Data Penyerahan Pakan <small>Penyerahan Pakan Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
+                <h1 class="page-header">Data Pemeliharaan <small>Pemeliharaan Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
-                <i class="fa fa-desktop"></i> Data Penyerahan</a></li>
+				
+                <i class="fa fa-desktop"></i> Data Pemeliharaan</a></li>
                 </ol>
                 </div>
                 </div>
@@ -19,14 +20,14 @@ include '../conn.php';?>
 <?php // Coding Hapus
 if (isset($_GET['del'])) {
   $id = $_GET['del'];
-  $cek = mysqli_query($koneksi, "SELECT * FROM tbpenyerahanpakan WHERE `IDPenyerahanPakan`='$id'");
+  $cek = mysqli_query($koneksi, "SELECT * FROM tbkandang WHERE `IDDataKandang`='$id'");
   if (mysqli_num_rows($cek) > 0) {
-    $delete = mysqli_query($koneksi, "DELETE FROM tbpenyerahanpakan WHERE `IDPenyerahanPakan`='$id'");
+    $delete = mysqli_query($koneksi, "DELETE FROM tbkandang WHERE `IDDataKandang`='$id'");
     if ($delete) {
       echo '<div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Berhasil!</strong> Data Telah dihapus.</div>';
-  echo '<meta http-equiv="refresh" content="0; url=./penyerahanpakan.php" >'; //coding refresh
+  echo '<meta http-equiv="refresh" content="0; url=./kandang.php" >'; //coding refresh
     } else {
       echo '<div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -37,7 +38,7 @@ if (isset($_GET['del'])) {
 ?>
  <!-- form grup dan modal -->
   <div class="form-group">
-  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Tambah Data</a>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Tambah Pemeliharaan Harian</a>
     
   </div>  
    
@@ -62,41 +63,40 @@ if (isset($_GET['del'])) {
 <!-- /.koding tambah data -->
 <!-- /.penomoran otomatis -->
 <?php
-$cari = mysqli_query ($koneksi, "select max(`IDPenyerahanPakan`) as kd from tbpenyerahanpakan");
+$cari = mysqli_query ($koneksi, "select max(`IDDataKandang`) as kd from tbdatakandang");
 $tm_cari = mysqli_fetch_array ($cari);
 $kode = substr($tm_cari['kd'],3,4);
 $tambah = $kode+1;
 if ($tambah<10){
-$ed = "PNP0".$tambah;
+$ed = "KDG0".$tambah;
 }else {
-$ed ="PR".$tambah;
+$ed ="KDG".$tambah;
 }
  //.koding simpan
 if (isset($_POST['add'])) {
-	$ip = $_POST['ip'];
+	$idk = $_POST['idk'];
 	$idp = $_POST['idp'];
-	$ttp = $_POST['ttp'];
-	$sjp = $_POST['sjp'];
-	$p = $_POST['p'];
+	$idjk = $_POST['idjk'];
+	$l = $_POST['l'];
 	
-  if ($ip != '') {
-		$insert = mysqli_query($koneksi, "INSERT INTO tbpenyerahanpakan (`IDPenyerahanPakan`,`IDProduksi`,`TglTerimaPakan`,`SJPakan`,`Periode`) 
-		VALUES ('$ip','$idp','$ttp','$sjp','$p')") or die(mysqli_error());
+  if ($idk != '') {
+		$insert = mysqli_query($koneksi, "INSERT INTO tbdatakandang (`IDDataKandang`, `IDPeternak`,`IDJenisKandang`,`Lokasi`) 
+		VALUES ('$idk','$idp','$idjk','$l')") or die(mysqli_error());
 		
 				if($insert) {
 			echo '<script type="text/javascript">alert("Data Berhasil disimpan") </script>';
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanpakan.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./kandang.php" >'; //coding refresh
 			
 		} else {
 			echo '<script type="text/javascript">alert("Data gagal disimpan")
 			</script>';
 			
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanpakan.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./kandang.php" >'; //coding refresh
 		}
 	}  else {
 		echo '<script type="text/javascript">alert("Data sudah ada")
 			</script>';
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanpakan.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./kandang.php" >'; //coding refresh
   }
 }
 $now = strtotime(date("Y-m-d"));
@@ -105,35 +105,40 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 ?>
 
 <!-- /.form input pada modal-->
-		<form  action="" method="post" class="form-group">
-		<label>ID Penyerahan</label>
-        <input  class="form-control form-white" name="ip" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >	
-        <label>ID Produksi</label>       
+		<form  action="" method="post" class="popup-form">					
+        <label>ID Data Kandang</label>
+        <input  class="form-control form-white" name="idk" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >
+                        
+        <label>ID Peternak</label>
         <select class="form-control" span="label label-success" name="idp" required="required">
-		<option required="required" value="">-- Pilih ID Produksi --</option>
+		<option required="required" value="">Pilih</option>
 		<?php
-			$q = mysqli_query ($koneksi, "select * from `tbpenyerahanbibit` order by `IDProduksi` ASC");
-			while ($dat = mysqli_fetch_array ($q)) {
-			echo '<option value="' . $dat[0]. '">' . $dat[0].'. Nama Peternak = '.$dat[1].' - Lokasi = '.$dat[2].'</option>';
-			}	
+			$q = mysqli_query ($koneksi, "select * from `tbpeternak` order by `IDPeternak` ASC");
+			while ($data = mysqli_fetch_array ($q)) {
+			echo '<option value="' . $data[0]. '">' . $data[0].'. Nama Peternak = '.$data[1].' - Alamat = '.$data[2].'</option>';
+			}
+			
 		?>
 		</select>
-					
-		<label>Tanggal Terima Pakan</label>
-		<input  class="form-control"  name="ttp" required="Tidak Boleh Kosong" type="date" placeholder="dd/mm/yyyy">
-
-		<label>Surat Jalan Pakan</label>
-        <input type="int" class="form-control form-white" name="sjp" placeholder="Masukkan Angka" required="" >
-						
-		<label>Periode</label>
-       <input type="int" class="form-control" name="p" placeholder="Masukkan Angka" required="" >
-	
-	
+		<label>ID Jenis Kandang</label>
+        <select class="form-control" span="label label-success" name="idjk" required="required">
+		<option required="required" value="">Pilih</option>
+		<?php
+			$q = mysqli_query ($koneksi, "select * from `tbjeniskandang` order by `IDJenisKandang` ASC");
+			while ($data = mysqli_fetch_array ($q)) {
+			echo '<option value="' . $data[0]. '">' . $data[0].'. Luas Kandang = '.$data[1].' - Kapasitas = '.$data[2].'</option>';
+			}
+		?>
+		</select>
+		
+		 <label>Lokasi Kandang</label>
+        <input  class="form-control form-white" name="l" placeholder="Enter text" value="" required>
+			                                
             <p></p>   <!-- /.Jarak -->
        
 <!-- /.Bottom simpan pada modal -->                   
 <button type="submit" class="btn btn-primary" name="add"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
-<a href="penyerahanpakan.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
+<a href="kandang.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
 
 		</form>
 				</div>
@@ -156,8 +161,8 @@ function confirm_delete() {
 
 <script type="text/javascript">
   $(document).ready(function() {
-	   $('#demo1').collapse('show');
-    $("#reload_data").load('get_penyerahanpakan.php');
+	   $('#demo').collapse('show');
+    $("#reload_data").load('get_pemeliharaan.php');
     $("#isi_cari").on("keyup", function() {
       var search = $(this).val();
       
@@ -165,7 +170,7 @@ function confirm_delete() {
     $("#isi_cari, #cari_reload").on("keyup", function() {
       var search = $(this).val();
       $.ajax({
-        url: 'get_penyerahanpakan.php',
+        url: 'get_pemeliharaan.php',
         data: 's='+search,
         success:function(data) {
           $("#reload_data").html(data);
@@ -178,4 +183,3 @@ function confirm_delete() {
   })
 </script>
 <?php include 'footer.php';?>
-

@@ -1,11 +1,3 @@
-<?php include "conn.php";
-include "library.php";
-include "seslogin.php";?>
-<?php
-if ($_SESSION['status'] != 'ADMIN') {
-	header('location: logout.php');
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,8 +40,18 @@ if ($_SESSION['status'] != 'ADMIN') {
 </head>
  <script type="text/javascript">
 	<?php  date_default_timezone_set('Asia/jakarta');?>
+ function displayTime(){
+	 var time= new Date ();
+	 var sh = time.getHours() +"";
+	 var sm = time.getMinutes()+"";
+	 var ss = time.getSeconds()+"";
+	 document.getElementById("clock").innerHTML = (sh.length==1?"0"+sh+sh)+":"+(sm.length==1?"0"+sm+sm)+":"+(ss.length==1?"0"+ss+ss);
+	 }
 </script>
 <body >
+<?php include "conn.php";
+include "library.php";
+include "seslogin.php";?>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -62,20 +64,14 @@ if ($_SESSION['status'] != 'ADMIN') {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-hand-right"></i>  HOME ADMIN TERABOT </a>
+              <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-hand-right"></i>  HOME  USER TERABOT</a>
             </div>
 		
 			
             <!-- Top Menu Items / Menu Atas-->
             <ul class="nav navbar-right top-nav">
             <li class="dropdown"></li>
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                <ul class="dropdown-menu alert-dropdown">      
-                <li><a href="#">Permintaan Terbaru <span class="label label-danger" align="center"> </span></a></li>
-                <li class="divider"></li>
-                <li>  <a href="baru_perm.php">Lihat Semua</a> </li></ul>
-                </li>
+               
 				
 				
                 <li class="dropdown">
@@ -97,33 +93,14 @@ if ($_SESSION['status'] != 'ADMIN') {
             <li>
             <a href="index.php"><i class="fa fa-lg fa-home"></i> Beranda</a>
             </li>
-                   
-				  
-            <li>
-            <a  href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-list-alt fa-lg"></i> Master Data<i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="demo" class="collapse">
-			
-			<li><a href="pengguna.php"><i class="fa fa-users fa-fw"></i> Pengguna</a></li>
-			<li><a href="pegawai.php"><i class="fa fa-user fa-fw"></i> Pegawai</a></li>
-			<li><a href="peternak.php"><i class="fa fa-list fa-fw"></i> Peternak</a></li>			
+                   	  
 			<li><a href="panen.php"><i class="fa fa-bar-chart fa-fw"></i> Data Panen</a></li>
-			<li><a href="pemeliharaan.php"><i class="fa fa-calendar fa-fw"></i> Pemeliharaan</a></li>
+			<li><a href="pemeliharaanharian.php"><i class="fa fa-list fa-fw"></i> Pemeliharaan</a></li>
 			
-			</ul>
-			</li>
-             
-			<li>
-			<a  href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-calculator fa-lg"></i> Transaksi<i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="demo1" class="collapse">
-			<li><a href="pengadaanbibit.php"><i class="fa fa-list fa-fw"></i> Pengadaan Bibit</a></li>
-			<li><a href="penyerahanbibit.php"><i class="fa fa-list fa-fw"></i> Penyerahan Bibit</a></li>
-			<li><a href="penyerahanpakan.php"><i class="fa fa-list fa-fw"></i> Penyerahan Pakan</a></li>
-			<li><a href="penyerahanovk.php"><i class="fa fa-list fa-fw"></i> Penyerahan OVK</a></li>
-			</ul>
-			</li>
+			<li><a href="gantipass.php"><i class="fa fa-list fa-fw"></i> Ganti Password</a></li>
+
 			<li><a href="javascript:;"><i class="fa fa-lg fa-info-circle"></i> Bantuan </a></li>		
-			
-		     
+			</ul>
             </div>
             <!-- /.navbar-collapse/ navigasi buka tutup-->
         </nav>

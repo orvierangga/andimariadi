@@ -5,7 +5,7 @@
                 <!-- Page Heading -->
                 <div class="row">
                 <div class="col-lg-12">
-                <h1 class="page-header">HOME ADMIN<small> Semangat Menjunjung Tinggi Suksesnya Mitra Usaha Kita</small></h1>
+                <h1 class="page-header">SELAMAT BERGABUNG <small>Pada Kemitraan Kami Ternak Ayam Broiler CV. Rehobot</small></h1>
                     <ol class="breadcrumb">
                     <li class="active"> <i class="fa fa-university"></i> VISI Dan MISI</li>
                     </ol>

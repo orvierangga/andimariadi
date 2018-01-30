@@ -118,9 +118,9 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
          <select class="form-control" span="label label-success" name="idp"  id="jenis" required="required">
 		<option required="required" value="">-- Pilih Data Peternak --</option>
 		<?php
-			$q = mysqli_query ($koneksi, "select * from `tbdatakandang` order by `IDDataKandang` ASC");
+			$q = mysqli_query ($koneksi, "SELECT * FROM `tbpeternak` WHERE `IDPeternak` NOT IN (SELECT `IDPeternak` FROM `tbpenyerahanbibit` WHERE MONTH(`TanggalChickIn`)='" . DATE('m') . "' AND YEAR(`TanggalChickIn`)='" . DATE('Y') . "')");
 			while ($dat = mysqli_fetch_array ($q)) {
-			echo '<option value="'. $dat['IDPeternak'].'">' . $dat[0].'. '.$dat[1].'  ('.$dat[2].')</option>';
+			echo '<option value="'. $dat['IDPeternak'].'">'.$dat['NamaPeternak'].' - '.$dat['Alamat'].'  ('.$dat[5].')</option>';
 			}
 		?>
 		</select>
@@ -140,7 +140,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		<?php
 			$s = mysqli_query ($koneksi, "select * from `tbstrain` order by `IDStrain` ASC");
 			while ($dat2 = mysqli_fetch_array ($s)) {
-			echo '<option value="' . $dat2[1]. '">' . $dat2[0].'. Strain = '.$dat2[1].'</option>';
+			echo '<option value="' . $dat2[1]. '">'.$dat2[1].'</option>';
 			}
 		?>
 		</select> 
@@ -167,7 +167,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		 </br>
 		
 		<label>Kandang</label>
-       <input type="text" class="form-control" name="idk" placeholder="Masukkan Angka" id="nama_anu" required="" >
+       <input type="text" class="form-control" name="idk" placeholder="kosong" id="nama_anu" readonly >
         
 	
 	
@@ -198,6 +198,7 @@ function confirm_delete() {
 
 <script type="text/javascript">
   $(document).ready(function() {
+	   $('#demo1').collapse('show');
     $("#reload_data").load('get_penyerahanbibit.php');
     $("#isi_cari").on("keyup", function() {
       var search = $(this).val();

@@ -1,0 +1,56 @@
+
+<?php
+date_default_timezone_set('Asia/Jakarta');
+include 'library.php';
+				if(isset($_POST['login'])){
+
+					include"conn.php";
+					$username	= $_POST['username'];
+					$password	= md5($_POST['password']);
+					
+					
+					$login=mysqli_query($koneksi,"SELECT * FROM `pengguna` WHERE `username`='$username'  AND `password` ='$password'");
+
+
+// Apabila username dan password ditemukan
+if(mysqli_num_rows($login) == 0){
+	echo '<div class="alert alert-danger" align="center" >Login gagal !!! Silahkan Coba Lagi..</div>';
+	}else{
+$ketemu =mysqli_num_rows($login);
+$r=mysqli_fetch_array($login);					 
+session_start();				
+$_SESSION['username']     = $r['username'];
+$_SESSION['password']     = $r['password'];
+$_SESSION['IDuser']=$r['IDuser'];
+$_SESSION['IDPengguna']=$r['IDPengguna'];
+//$_SESSION['status']=$r['status'];
+
+
+  $jam = date("H:i:s");
+  $tgl = date("Y-m-d");
+
+ 	
+						if($r['status'] == 'ADMIN'){
+						
+							$_SESSION['username']=$username;
+							$_SESSION['status']='ADMIN';
+							$_SESSION['IDuser']=$ketemu['IDuser'];
+							
+							 mysqli_query($koneksi, "INSERT INTO `log_login`(`username`,`jam_msk`,`jam_klr`,`tgl_msk`,`tgl_klr`,`status_log`)
+                           VALUES('$_SESSION[username]','$jam','logged','$tgl','---','online')");	
+						   header("Location: /terabot/admin/index.php");
+						}else {
+							
+								
+								
+							$_SESSION['username']=$username;
+							$_SESSION['status']='<?php echo $data[3];?>';
+						$_SESSION['IDuser']=$ketemu['IDuser'];							
+							  mysqli_query($koneksi, "INSERT INTO `log_login`(`username`,`jam_msk`,`jam_klr`,`tgl_msk`,`tgl_klr`,`status_log`)
+                           VALUES('$_SESSION[username]','$jam','logged','$tgl','---','online')");	
+						   header("Location: /terabot/user/index.php");
+						}
+					}
+				}
+				?>  
+  

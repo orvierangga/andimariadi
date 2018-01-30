@@ -190,6 +190,7 @@ function confirm_delete() {
 
 <script type="text/javascript">
   $(document).ready(function() {
+	   $('#demo1').collapse('show');
     $("#reload_data").load('get_pengadaanbibit.php');
     $("#isi_cari").on("keyup", function() {
       var search = $(this).val();

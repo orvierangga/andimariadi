@@ -169,6 +169,8 @@ function confirm_delete() {
         }
       }) 
     });
-  })
+	$('#demo').collapse('show');
+  });
+  
 </script>
 <?php include 'footer.php';?>

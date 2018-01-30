@@ -7,10 +7,10 @@ include '../conn.php';?>
                 <!-- Page Heading -->
                 <div class="row">
                 <div class="col-lg-12">
-                <h1 class="page-header">Data Penyerahan Pakan <small>Penyerahan Pakan Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
+                <h1 class="page-header">Data Pegawai <small>Biodata Pegawai CV. Rehobot</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
-                <i class="fa fa-desktop"></i> Data Penyerahan</a></li>
+                <i class="fa fa-user"></i> Data Pegawai</a></li>
                 </ol>
                 </div>
                 </div>
@@ -19,14 +19,14 @@ include '../conn.php';?>
 <?php // Coding Hapus
 if (isset($_GET['del'])) {
   $id = $_GET['del'];
-  $cek = mysqli_query($koneksi, "SELECT * FROM tbpenyerahanpakan WHERE `IDPenyerahanPakan`='$id'");
+  $cek = mysqli_query($koneksi, "SELECT * FROM tbpegawai WHERE `IDPegawai`='$id'");
   if (mysqli_num_rows($cek) > 0) {
-    $delete = mysqli_query($koneksi, "DELETE FROM tbpenyerahanpakan WHERE `IDPenyerahanPakan`='$id'");
+    $delete = mysqli_query($koneksi, "DELETE FROM tbpegawai WHERE `IDPegawai`='$id'");
     if ($delete) {
       echo '<div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Berhasil!</strong> Data Telah dihapus.</div>';
-  echo '<meta http-equiv="refresh" content="0; url=./penyerahanpakan.php" >'; //coding refresh
+  echo '<meta http-equiv="refresh" content="0; url=./pegawai.php" >'; //coding refresh
     } else {
       echo '<div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -62,41 +62,42 @@ if (isset($_GET['del'])) {
 <!-- /.koding tambah data -->
 <!-- /.penomoran otomatis -->
 <?php
-$cari = mysqli_query ($koneksi, "select max(`IDPenyerahanPakan`) as kd from tbpenyerahanpakan");
+$cari = mysqli_query ($koneksi, "select max(`IDPegawai`) as kd from tbpegawai");
 $tm_cari = mysqli_fetch_array ($cari);
-$kode = substr($tm_cari['kd'],3,4);
+$kode = substr($tm_cari['kd'],2,4);
 $tambah = $kode+1;
 if ($tambah<10){
-$ed = "PNP0".$tambah;
+$ed = "PG00".$tambah;
 }else {
-$ed ="PR".$tambah;
+$ed ="PGW".$tambah;
 }
  //.koding simpan
 if (isset($_POST['add'])) {
-	$ip = $_POST['ip'];
 	$idp = $_POST['idp'];
-	$ttp = $_POST['ttp'];
-	$sjp = $_POST['sjp'];
-	$p = $_POST['p'];
+	$nama = $_POST['nama'];
+	$status = $_POST['status'];
+	$alamat = $_POST['alamat'];
+	$tgllahir = $_POST['tgllahir'];
+	$nohp = $_POST['nohp'];
 	
-  if ($ip != '') {
-		$insert = mysqli_query($koneksi, "INSERT INTO tbpenyerahanpakan (`IDPenyerahanPakan`,`IDProduksi`,`TglTerimaPakan`,`SJPakan`,`Periode`) 
-		VALUES ('$ip','$idp','$ttp','$sjp','$p')") or die(mysqli_error());
+  if ($idp != '') {
+		$insert = mysqli_query($koneksi, "INSERT INTO tbpegawai (`IDPegawai`, `Nama`,`Status`,`Alamat`,`TanggalLahir`,`Nohp`) 
+		VALUES ('$idp','$nama','$status','$alamat','$tgllahir','$nohp')") or die(mysqli_error());
 		
 				if($insert) {
 			echo '<script type="text/javascript">alert("Data Berhasil disimpan") </script>';
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanpakan.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./pegawai.php" >'; //coding refresh
 			
 		} else {
 			echo '<script type="text/javascript">alert("Data gagal disimpan")
 			</script>';
 			
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanpakan.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./pegawai.php" >'; //coding refresh
 		}
 	}  else {
 		echo '<script type="text/javascript">alert("Data sudah ada")
 			</script>';
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanpakan.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./pegawai.php" >'; //coding refresh
   }
 }
 $now = strtotime(date("Y-m-d"));
@@ -105,35 +106,26 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 ?>
 
 <!-- /.form input pada modal-->
-		<form  action="" method="post" class="form-group">
-		<label>ID Penyerahan</label>
-        <input  class="form-control form-white" name="ip" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >	
-        <label>ID Produksi</label>       
-        <select class="form-control" span="label label-success" name="idp" required="required">
-		<option required="required" value="">-- Pilih ID Produksi --</option>
-		<?php
-			$q = mysqli_query ($koneksi, "select * from `tbpenyerahanbibit` order by `IDProduksi` ASC");
-			while ($dat = mysqli_fetch_array ($q)) {
-			echo '<option value="' . $dat[0]. '">' . $dat[0].'. Nama Peternak = '.$dat[1].' - Lokasi = '.$dat[2].'</option>';
-			}	
-		?>
-		</select>
-					
-		<label>Tanggal Terima Pakan</label>
-		<input  class="form-control"  name="ttp" required="Tidak Boleh Kosong" type="date" placeholder="dd/mm/yyyy">
-
-		<label>Surat Jalan Pakan</label>
-        <input type="int" class="form-control form-white" name="sjp" placeholder="Masukkan Angka" required="" >
-						
-		<label>Periode</label>
-       <input type="int" class="form-control" name="p" placeholder="Masukkan Angka" required="" >
-	
-	
+		<form  action="" method="post" class="popup-form">					
+        <label>ID Pegawai</label>
+        <input  class="form-control form-white" name="idp" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >               
+        <label>Nama Pegawai</label>
+        <input  class="form-control form-white"  name="nama" required="Tidak Boleh Kosong" placeholder="Enter text">		
+		<label>Status</label>
+        <input  class="form-control form-white"  name="status" required="Tidak Boleh Kosong" placeholder="Enter text">					
+		<label>Alamat</label>
+        <input  class="form-control "  name="alamat" required="Tidak Boleh Kosong" placeholder="Enter text">
+		<label>Tanggal Lahir</label>
+		<input  class="form-control"  name="tgllahir" required="Tidak Boleh Kosong" type="date" placeholder="dd/mm/yyyy">	
+		<label>Nomor Telpon/HP</label>
+        <input  class="form-control form-white"  name="nohp" required="Tidak Boleh Kosong" placeholder="Enter text">
+		
+        
             <p></p>   <!-- /.Jarak -->
        
 <!-- /.Bottom simpan pada modal -->                   
 <button type="submit" class="btn btn-primary" name="add"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
-<a href="penyerahanpakan.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
+<a href="pegawai.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
 
 		</form>
 				</div>
@@ -151,13 +143,15 @@ function confirm_delete() {
   return confirm('Hapus data ini?');
 }
 </script>
+
+
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {
-	   $('#demo1').collapse('show');
-    $("#reload_data").load('get_penyerahanpakan.php');
+	  $('#demo').collapse('show');
+    $("#reload_data").load('get_pegawai.php');
     $("#isi_cari").on("keyup", function() {
       var search = $(this).val();
       
@@ -165,7 +159,7 @@ function confirm_delete() {
     $("#isi_cari, #cari_reload").on("keyup", function() {
       var search = $(this).val();
       $.ajax({
-        url: 'get_penyerahanpakan.php',
+        url: 'get_pegawai.php',
         data: 's='+search,
         success:function(data) {
           $("#reload_data").html(data);
@@ -178,4 +172,3 @@ function confirm_delete() {
   })
 </script>
 <?php include 'footer.php';?>
-
