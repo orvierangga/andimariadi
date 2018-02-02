@@ -46,16 +46,15 @@ include '../conn.php';?>
 	  <select class="form-control col-md-4" span="label label-success" onchange="form.submit()" name="anu" >
 		<option value="">-- Pilih Periode --</option>
 		<?php
-		  $anu =  @$_GET1['anu'];
+		  $anu =  @$_GET['anu'];
 			$q = mysqli_query ($koneksi, "SELECT * FROM `tbpenyerahanbibit` order by `IDProduksi` ASC");
 			while ($dat = mysqli_fetch_array ($q)) {
-			
-		if ($dat['Periode']== $anu) {
-			 echo' <option value="'.$dat['Periode'].'" selected>'.$dat['Periode'].'</option>';
-			} else {
-      echo' <option value="'.$dat['Periode'].'">'.$dat['Periode'].'</option>' ; 
-    }
-  }
+        if ($dat['Periode']== $anu) {
+          echo' <option value="'.$dat['Periode'].'" selected>'.$dat['Periode'].'</option>';
+        } else {
+          echo' <option value="'.$dat['Periode'].'">'.$dat['Periode'].'</option>';
+        }
+      }
 		?>
 		</select>
 		</div>
@@ -70,15 +69,12 @@ include '../conn.php';?>
       <th>Detail</th>
     </tr>
     <?php
-	
-	 $id= @$_GET2['id'];
-      if ($anu) {
-		 
-        $sql = mysqli_query($koneksi, "SELECT `tbpenyerahanbibit` .* , `tbpemeliharaanharian`.`IDProduksi`,SUM(`tbpemeliharaanharian`.`Mati`) as `total` FROM `tbpenyerahanbibit` LEFT JOIN `tbpemeliharaanharian` ON `tbpenyerahanbibit`.`IDProduksi` = `tbpemeliharaanharian`.`IDProduksi` WHERE `tbpenyerahanbibit`.`Periode` = '$id'"); //form 1
-	  } 
-	  else {
+    if ($anu) {
+      $sql = mysqli_query($koneksi, "SELECT `tbpenyerahanbibit` .* , `tbpemeliharaanharian`.`IDProduksi`,SUM(`tbpemeliharaanharian`.`Mati`) as `total` FROM `tbpenyerahanbibit` LEFT JOIN `tbpemeliharaanharian` ON `tbpenyerahanbibit`.`IDProduksi` = `tbpemeliharaanharian`.`IDProduksi` WHERE `tbpenyerahanbibit`.`Periode` = '$anu'"); //form 1
+	  } else {
 		  $sql= mysqli_query ($koneksi, "SELECT `tbpenyerahanbibit` .* , `tbpemeliharaanharian`.`IDProduksi`,SUM(`tbpemeliharaanharian`.`Mati`) as `total` FROM `tbpenyerahanbibit` LEFT JOIN `tbpemeliharaanharian` ON `tbpenyerahanbibit`.`IDProduksi` = `tbpemeliharaanharian`.`IDProduksi` GROUP by `tbpenyerahanbibit`.`Periode` desc");
-	  }//$sql = mysqli_query($koneksi, "SELECT *,SUM(`jumlah_msk`) AS `total_semua`, sum(harga_msk) as `total_harga` FROM `barang_masuk` GROUP BY `des_barang` "); //form 2
+	  }
+    //$sql = mysqli_query($koneksi, "SELECT *,SUM(`jumlah_msk`) AS `total_semua`, sum(harga_msk) as `total_harga` FROM `barang_masuk` GROUP BY `des_barang` "); //form 2
 	 
 	 if (mysqli_num_rows($sql) == 0) {
         echo "<tr><td colspan=\"9\">Tidak Ada Data</td></tr>";
