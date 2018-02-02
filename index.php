@@ -35,7 +35,7 @@
     <![endif]-->
 
 </head>
-<body background ="img/slide_22.jpg">
+<body background ="img/slide.jpg">
 		
 <?php
 date_default_timezone_set('Asia/Jakarta');
@@ -124,7 +124,7 @@ $_SESSION['IDPengguna']=$r['IDPengguna'];
 					</div>
 					
 					<div class="form-group" bgcolor="black">
-						<input type="submit" name="login" class="btn btn-primary btn-block" value="Login" />
+						<input type="submit" name="login" class="btn btn-success btn-block" value="Login" />
 					</div>
 				 </fieldset>
                         </form>

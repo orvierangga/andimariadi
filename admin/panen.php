@@ -7,10 +7,10 @@ include '../conn.php';?>
                 <!-- Page Heading -->
                 <div class="row">
                 <div class="col-lg-12">
-                <h1 class="page-header">Data Bibit <small>Penyerahan Bibit Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
+                <h1 class="page-header">Data Panen<small>Panen Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
-                <i class="fa fa-desktop"></i> Data Penyerahan</a></li>
+                <i class="fa fa-desktop"></i> Data Hasil Panen</a></li>
                 </ol>
                 </div>
                 </div>
@@ -19,14 +19,14 @@ include '../conn.php';?>
 <?php // Coding Hapus
 if (isset($_GET['del'])) {
   $id = $_GET['del'];
-  $cek = mysqli_query($koneksi, "SELECT * FROM tbpenyerahanbibit WHERE `IDProduksi`='$id'");
+  $cek = mysqli_query($koneksi, "SELECT * FROM tbpanen WHERE `IDPanen`='$id'");
   if (mysqli_num_rows($cek) > 0) {
-    $delete = mysqli_query($koneksi, "DELETE FROM tbpenyerahanbibit WHERE `IDProduksi`='$id'");
+    $delete = mysqli_query($koneksi, "DELETE FROM tbpanen WHERE `IDPanen`='$id'");
     if ($delete) {
       echo '<div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Berhasil!</strong> Data Telah dihapus.</div>';
-  echo '<meta http-equiv="refresh" content="0; url=./penyerahanbibit.php" >'; //coding refresh
+  echo '<meta http-equiv="refresh" content="0; url=./panen.php" >'; //coding refresh
     } else {
       echo '<div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -62,46 +62,44 @@ if (isset($_GET['del'])) {
 <!-- /.koding tambah data -->
 <!-- /.penomoran otomatis -->
 <?php
-$cari = mysqli_query ($koneksi, "select max(`IDProduksi`) as kd from tbpenyerahanbibit");
+$cari = mysqli_query ($koneksi, "select max(`IDPanen`) as kd from tbpanen");
 $tm_cari = mysqli_fetch_array ($cari);
 $kode = substr($tm_cari['kd'],2,4);
 $tambah = $kode+1;
 if ($tambah<10){
-$ed = "PR00".$tambah;
+$ed = "PN00".$tambah;
 }else {
-$ed ="PR".$tambah;
+$ed ="PN".$tambah;
 }
  //.koding simpan
 if (isset($_POST['add'])) {
 	$ip = $_POST['ip'];
 	$idp = $_POST['idp'];
-	$ids = $_POST['ids'];
-	$s = $_POST['s'];
-	$tc = $_POST['tc'];
-	$jc = $_POST['jc'];
-	$hrg = $_POST['hrg'];
-	$p = $_POST['p'];
-	$k = $_POST['k'];
-	$idk = $_POST['idk'];
+	$tp = $_POST['tp'];
+	$u = $_POST['u'];
+	$ja = $_POST['ja'];
+	$tb = $_POST['tb'];
+	$br = $_POST['br'];
+	$np = $_POST['np'];
 	
   if ($ip != '') {
-		$insert = mysqli_query($koneksi, "INSERT INTO tbpenyerahanbibit (`IDProduksi`, `IDPeternak`,`IDSupplier`,`Strain`,`TanggalChickIn`,`JumlahChickIn`,`Harga`,`Periode`,`KondisiChickIn`,`IDDataKandang`) 
-		VALUES ('$ip','$idp','$ids','$s','$tc','$jc','$hrg','$p','$k','$idk')") or die(mysqli_error());
+		$insert = mysqli_query($koneksi, "INSERT INTO tbpanen (`IDPanen`, `IDProduksi`,`TanggalPengiriman`,`Umur`,`JumlahAyam`,`TotalBerat`,`BeratRata`,`NamaPembeli`) 
+		VALUES ('$ip','$idp','$tp','$u','$ja','$tb','$br','$np')") or die(mysqli_error());
 		
 				if($insert) {
 			echo '<script type="text/javascript">alert("Data Berhasil disimpan") </script>';
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanbibit.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./panen.php" >'; //coding refresh
 			
 		} else {
 			echo '<script type="text/javascript">alert("Data gagal disimpan")
 			</script>';
 			
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanbibit.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./panen.php" >'; //coding refresh
 		}
 	}  else {
 		echo '<script type="text/javascript">alert("Data sudah ada")
 			</script>';
-			echo '<meta http-equiv="refresh" content="0; url=./penyerahanbibit.php" >'; //coding refresh
+			echo '<meta http-equiv="refresh" content="0; url=./panen.php" >'; //coding refresh
   }
 }
 $now = strtotime(date("Y-m-d"));
@@ -111,12 +109,12 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 
 <!-- /.form input pada modal-->
 		<form  action="" method="post" class="form-group">
-			
-        <label>ID Produksi</label>
+		 <label>ID Panen</label>
         <input  class="form-control form-white" name="ip" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >
-        
-         <select class="form-control" span="label label-success" name="idp"  id="jenis" required="required">
-		<option required="required" value="">-- Pilih Data Peternak --</option>
+       	
+        <label>ID Produksi</label>        
+         <select class="form-control" span="label label-success" name="idp" required="required">
+		<option required="required" value="">-- Pilih ID Produksi --</option>
 		<?php
 			$q = mysqli_query ($koneksi, "SELECT * FROM `tbpeternak` WHERE `IDPeternak` NOT IN (SELECT `IDPeternak` FROM `tbpenyerahanbibit` WHERE MONTH(`TanggalChickIn`)='" . DATE('m') . "' AND YEAR(`TanggalChickIn`)='" . DATE('Y') . "')");
 			while ($dat = mysqli_fetch_array ($q)) {
@@ -124,50 +122,24 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 			}
 		?>
 		</select>
-
-		<select class="form-control" span="label label-success" name="ids" required="required">
-		<option required="required" value="">-- Pilih Supplier --</option>
-		<?php
-			$w = mysqli_query ($koneksi, "select * from `tbsupplier` order by `IDSupplier` ASC");
-			while ($dat1 = mysqli_fetch_array ($w)) {
-			echo '<option value="'. $dat1[0].'">' . $dat1[0].'. '.$dat1[1].'  ('.$dat1[2].')</option>';
-			}
-		?>
-		</select>
-
-		 <select class="form-control" span="label label-success" name="s" required="required">
-		<option required="required" value="">-- Pilih Strain --</option>
-		<?php
-			$s = mysqli_query ($koneksi, "select * from `tbstrain` order by `IDStrain` ASC");
-			while ($dat2 = mysqli_fetch_array ($s)) {
-			echo '<option value="' . $dat2[1]. '">'.$dat2[1].'</option>';
-			}
-		?>
-		</select> 
-
 					
-		<label>Tanggal Chick In</label>
-		<input  class="form-control"  name="tc" required="Tidak Boleh Kosong" type="date" placeholder="dd/mm/yyyy">
+		<label>Tanggal Pengiriman</label>
+		<input  class="form-control"  name="tp" required="Tidak Boleh Kosong" type="date" placeholder="dd/mm/yyyy">
 
-		<label>Jumlah Chick In</label>
-        <input type="int" class="form-control form-white" name="jc" placeholder="Masukkan Angka" required="" >
+		<label>Jumlah Ayam</label>
+        <input type="text" class="form-control form-white" name="ja" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" required="" >
 		
-		<label>Harga</label>
-        <input type="int" class="form-control form-white" name="hrg" placeholder="Masukkan Angka" required="" >	
-						
-		<label>Periode</label>
-       <input type="int" class="form-control" name="p" placeholder="Masukkan Angka" required="" >
+		<label>Umur</label>
+        <input type="text" class="form-control form-white" name="u" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" required="" >
+							
+		<label>Total Berat</label>
+       <input type="text" class="form-control" name="tb" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" required="" >
        
-        </br>
-	
-		<label>Kondisi Chick In</label>
-		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <input type="radio" name="k" value="Normal" checked> Normal &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-		<input type="radio" name="k" value="Tidak Normal"> Tidak Normal <br/>
-		 </br>
-		
-		<label>Kandang</label>
-       <input type="text" class="form-control" name="idk" placeholder="kosong" id="nama_anu" readonly >
+        <label>Berat Rata</label>
+       <input type="text" class="form-control" name="br" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" required="" >
+   
+		<label>Nama Pembeli</label>
+       <input type="text" class="form-control" name="np" pattern="[A-Z a-z]*" title="Hanya Huruf" placeholder="kosong" required >
         
 	
 	
@@ -175,7 +147,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
        
 <!-- /.Bottom simpan pada modal -->                   
 <button type="submit" class="btn btn-primary" name="add"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
-<a href="penyerahanbibit.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
+<a href="panen.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
 
 		</form>
 				</div>
@@ -199,7 +171,7 @@ function confirm_delete() {
 <script type="text/javascript">
   $(document).ready(function() {
 	   $('#demo1').collapse('show');
-    $("#reload_data").load('get_penyerahanbibit.php');
+    $("#reload_data").load('get_panen.php');
     $("#isi_cari").on("keyup", function() {
       var search = $(this).val();
       
@@ -207,7 +179,7 @@ function confirm_delete() {
     $("#isi_cari, #cari_reload").on("keyup", function() {
       var search = $(this).val();
       $.ajax({
-        url: 'get_penyerahanbibit.php',
+        url: 'get_panen.php',
         data: 's='+search,
         success:function(data) {
           $("#reload_data").html(data);

@@ -22,6 +22,7 @@ include '../conn.php';?>
 $data1 = mysqli_query($koneksi, "SELECT * FROM `tbpenyerahanbibit` WHERE `IDPeternak`='" . $_SESSION['IDPengguna']. "'");
 $row = mysqli_num_rows($data1);
 ?>
+
  <!-- seleksi peternak yang sudah masuk akses -->
   <div class="form-group">
 <?php
@@ -34,7 +35,7 @@ $row = mysqli_num_rows($data1);
 	?>
   </div>  
   
-		
+	
    
   <?php
 $cari = mysqli_query ($koneksi, "select max(`IDPHarian`) as kd from tbpemeliharaanharian");
@@ -98,9 +99,9 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		}
 		foreach($data1 as $anu):
 	?>
-		<div class="col-md-2 form-method"  >
+		<div class="col-md-2 form-method"  align="right">
 		<input type="hidden" name="idph" class="form-control" value="<?php echo $ed;?>" readonly>      
-		<input  name="idp" class="form-control" value="<?php echo $anu['IDProduksi'];?>" readonly>        
+		<input name="idp" class="form-control" value="<?php echo $anu['IDProduksi'];?>" readonly>        
         </div>
 		
 		
@@ -108,9 +109,9 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
     <div class="col-lg-2" >
 		<label>ID Peternak</label> :  <?php echo $anu['IDPeternak'];?>
 	</div>
-	<div class="col-lg-2" >
+	<div class="col-lg-3" >
 		<label>Tanggal Chick In</label> : <?php echo $anu['TanggalChickIn'];?>
-    </div>
+    </div><br></br>
 	<!--input tambah-->
 	<div class="col-md-1" >
 		 <label>Umur</label> 
@@ -206,12 +207,12 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
    
   <!-- untuk membuat cari -->
 	<div class="row">
-    <div class="col-xs-7">
+    <div class="col-xs-9">
     <input type="text" name="s" class="form-control" placeholder="Cari.." id="isi_cari">
     </div>
-    <div class="col-xs-2" align="right"><a href="#" class="btn btn-success" id="cari_reload"><span class="glyphicon glyphicon-search" > </span> Cari</a>
+    <div class="col-xs-1" align="right"><a href="#" class="btn btn-success" id="cari_reload"><span class="glyphicon glyphicon-search" > </span> Cari</a>
     </div>
-	<div class="col-xs-2" align="right"><a href="#" class="btn btn-primary" id="cari_reload"><span class="glyphicon glyphicon-print" > </span> Cetak</a>
+	<div class="col-xs-1" align="left"><a href="#" class="btn btn-secondary" id="cari_reload"><span class="glyphicon glyphicon-print" > </span> Cetak</a>
     </div>
 	</div> 
 	

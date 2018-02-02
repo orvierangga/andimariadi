@@ -31,22 +31,18 @@ $id_nik = $_GET['id'];
     <td><?php echo $data[1];?></td>
   </tr>
   <tr>
-    <th class="col-sm-2">Lokasi</th>
-    <td><?php echo $data[2];?></td>
-  </tr>
-  <tr>
     <th class="col-sm-2">Alamat</th>
-    <td><?php echo $data[3];?></td>
+    <td><?php echo $data[2];?></td>
   </tr>
 
   <tr>
     <th class="col-sm-2">Tanggal Lahir</th>
-    <td><?php echo indonesiaTgl($data[4]);?></td>
+    <td><?php echo indonesiaTgl($data[3]);?></td>
   </tr>
 
   <tr>
     <th class="col-sm-2">Nomor KTP</th>
-    <td><?php echo $data[5];?></td>
+    <td><?php echo $data[4];?></td>
   </tr>
 
   

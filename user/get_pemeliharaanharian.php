@@ -1,6 +1,7 @@
 <?php
-include '../conn.php';?>
-
+include '../conn.php';
+?>
+	
 	<div class="table-responsive">
 	<table class="table table-striped table-hover" bgcolor="#CCCCCC">
     <tr>
@@ -27,9 +28,9 @@ include '../conn.php';?>
 
        if (isset($_GET['s'])) {
         $search = $_GET['s'];
-        $sql = mysqli_query($koneksi, "SELECT * from tbpemeliharaanharian where `MingguKe` LIKE '%{$search}%'order by `IDPHarian` ASC");
+        $sql = mysqli_query($koneksi, "SELECT * from tbpemeliharaanharian where `MingguKe` LIKE '%{$search}%' AND `IDProduksi`='$ud1' order by `IDPHarian` ASC");
           } else {
-          $sql = mysqli_query($koneksi, "SELECT * from tbpemeliharaanharian order by `IDPHarian` asc");
+          $sql = mysqli_query($koneksi, "SELECT * from tbpemeliharaanharian where `IDProduksi`='$ud1' order by `IDPHarian` asc");
           }
       
       if (mysqli_num_rows($sql) == 0) {

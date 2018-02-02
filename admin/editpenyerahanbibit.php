@@ -9,7 +9,7 @@ $ud1 = $_GET['id'];?>
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Edit Pengadaan Bibit
+                            Edit Penyerahan Bibit
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
