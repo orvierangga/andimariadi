@@ -19,7 +19,10 @@ include '../conn.php';?>
 				
 <?php 
 //anu koding seleksi
+//echo $_SESSION['IDPengguna'];
 $data1 = mysqli_query($koneksi, "SELECT * FROM `tbpenyerahanbibit` WHERE `IDPeternak`='" . $_SESSION['IDPengguna']. "'");
+
+$wahin = mysqli_fetch_assoc($data1);
 $row = mysqli_num_rows($data1);
 ?>
 
@@ -237,7 +240,6 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 </div>
 </div>
 	
-	
 <script type="text/javascript">
 function confirm_delete() {
   return confirm('Hapus data ini?');
@@ -248,7 +250,7 @@ function confirm_delete() {
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $("#reload_data").load('get_pemeliharaanharian.php');
+    $("#reload_data").load('get_pemeliharaanharian.php?id=<?php echo $wahin['IDProduksi'];?>');
     $("#isi_cari").on("keyup", function() {
       var search = $(this).val();
       
@@ -257,7 +259,7 @@ function confirm_delete() {
       var search = $(this).val();
       $.ajax({
         url: 'get_pemeliharaanharian.php',
-        data: 's='+search,
+        data: 's='+search +'&id=<?php echo $wahin['IDProduksi'];?>',
         success:function(data) {
           $("#reload_data").html(data);
         },

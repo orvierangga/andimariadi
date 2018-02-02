@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../conn.php';
 ?>
 	
@@ -25,12 +26,12 @@ include '../conn.php';
 		<!--/.tampil-->
     <?php
       $tanggal = date('Y-m-d');
-
+      $id = $_GET['id'];
        if (isset($_GET['s'])) {
         $search = $_GET['s'];
-        $sql = mysqli_query($koneksi, "SELECT * from tbpemeliharaanharian where `MingguKe` LIKE '%{$search}%' AND `IDProduksi`='$ud1' order by `IDPHarian` ASC");
+        $sql = mysqli_query($koneksi, "SELECT * from tbpemeliharaanharian where `MingguKe` LIKE '%{$search}%' AND `IDProduksi`='{$id}' order by `IDPHarian` ASC");
           } else {
-          $sql = mysqli_query($koneksi, "SELECT * from tbpemeliharaanharian where `IDProduksi`='$ud1' order by `IDPHarian` asc");
+          $sql = mysqli_query($koneksi, "SELECT * from tbpemeliharaanharian where `IDProduksi`='{$id}' order by `IDPHarian` asc");
           }
       
       if (mysqli_num_rows($sql) == 0) {
