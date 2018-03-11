@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 06, 2018 at 07:53 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Host: localhost
+-- Generation Time: Mar 11, 2018 at 01:44 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -316,17 +316,20 @@ CREATE TABLE `tbpeternak` (
   `NamaPeternak` text NOT NULL,
   `Alamat` text NOT NULL,
   `TanggalLahir` date NOT NULL,
-  `NoKTP` varchar(25) NOT NULL
+  `NoKTP` varchar(25) NOT NULL,
+  `foto` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbpeternak`
 --
 
-INSERT INTO `tbpeternak` (`IDPeternak`, `NamaPeternak`, `Alamat`, `TanggalLahir`, `NoKTP`) VALUES
-('PT001', 'abdul Qadir', 'Warukin, Kecamatan Tanta', '1987-01-11', '6309037443522432'),
-('PT002', 'Hasbiannur', 'Tanjung selatan, Kec. Murung Pudak', '1979-12-31', '6909668765598766'),
-('PT003', 'Rijali Fuadi', 'Desa Mangkusip, Kec. Tanta', '1975-10-02', '6309000000343533');
+INSERT INTO `tbpeternak` (`IDPeternak`, `NamaPeternak`, `Alamat`, `TanggalLahir`, `NoKTP`, `foto`) VALUES
+('PT001', 'abdul Qadir', 'Warukin, Kecamatan Tanta', '1987-01-11', '6309037443522432', ''),
+('PT002', 'Hasbiannur', 'Tanjung selatan, Kec. Murung Pudak', '1979-12-31', '6909668765598766', ''),
+('PT003', 'Rijali Fuadi', 'Desa Mangkusip, Kec. Tanta', '1975-10-02', '6309000000343533', ''),
+('PT004', 'Nganu', 'Nganu', '2016-01-07', '98967666554', 'none.gif'),
+('PT005', 'a', 'a', '2017-11-10', '1', 'none.gif');
 
 -- --------------------------------------------------------
 

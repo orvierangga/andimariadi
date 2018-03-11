@@ -38,8 +38,13 @@ include '../conn.php';?>
           <td>'.$data[1].'</td>
 		  <td>'.$data[2].'</td>
 		  <td>'.$data[3].'</td>
-		  <td>'.$data[4].'</td>
-		  <td>'.$data[5].'</td>
+		  <td>'.$data[4].'</td>';
+      if (!empty($data[5])) {
+        echo '<td><img src="img/'.$data[5].'" width="60" /></td>';
+      } else {
+        echo '<td>'.$data[5].'</td>';
+      }
+      echo '
 
 		<td><a href="editpeternak.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
           <a href="?del='.$data[0].'" class="btn-danger btn-sm" ><span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm(\'Hapus data ini?\')"></span></a></td>
@@ -49,6 +54,7 @@ include '../conn.php';?>
     ?>
 	</table>
 	</div>
+
 <div class="table-responsive">
  <a href="cetakpeternak.php" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
 </div>

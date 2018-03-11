@@ -81,18 +81,21 @@ if (isset($_POST['add'])) {
 	$tgllahir = $_POST['tgllahir'];
 	$noktp = $_POST['noktp'];
 	//coding upload gambar
-	$foto = $_FILES['foto']['name'];
-	$tmp = $_FILES['foto']['tmp_name'];
-	$fotobaru = $_FILES['dmYHis'].$foto;
-	$path = "img/".$fotobaru;
+  // Ambil Data yang Dikirim dari Form
+  $nama_file = $_FILES['foto']['name'];
+  $ukuran_file = $_FILES['foto']['size'];
+  $tipe_file = $_FILES['foto']['type'];
+  $tmp_file = $_FILES['foto']['tmp_name'];// Set path folder tempat menyimpan gambarnya
+  $path = "img/".$nama_file;
+  //
 		
 	
   if ($idp != '') { 
+    if(move_uploaded_file($tmp_file, $path)){
 		$insert = mysqli_query($koneksi, "INSERT INTO tbpeternak (`IDPeternak`, `NamaPeternak`,`Alamat`,`TanggalLahir`,`NoKTP`,`foto`) 
-		VALUES ('$idp','$nama','$alamat','$tgllahir','$noktp','$fotobaru')") or die(mysqli_error());
+		VALUES ('$idp','$nama','$alamat','$tgllahir','$noktp','$nama_file')") or die(mysqli_error());
 		//$sql = mysqli_query($koneksi,$insert);
-				if($insert) {
-					move_uploaded_file($tmp, $path);
+			//move_uploaded_file($tmp, $path);
 			echo '<script type="text/javascript">alert("Data Berhasil disimpan") </script>';
 			echo '<meta http-equiv="refresh" content="0; url=./peternak.php" >'; //coding refresh
 			
@@ -114,7 +117,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 ?>
 
 <!-- /.form input pada modal-->
-		<form  action="" method="post" class="popup-form">					
+		<form  action="" enctype="multipart/form-data" method="post" class="popup-form">					
         <label>ID Peternak</label>
         <input  class="form-control form-white" name="idp" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >               
         <label>Nama Peternak</label>
