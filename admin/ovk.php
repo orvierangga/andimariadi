@@ -10,7 +10,9 @@ include '../conn.php';?>
                 <h1 class="page-header">Data OVK <small>Obat Vaksin Kimia</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
-                <i class="fa fa-desktop"></i> Data Obat Vaksin Kimia</li>
+                <i class="fa fa-desktop"></i><a href="penyerahanovk.php"> Data Penyerahan OVK</a></li>
+				<i class="fa fa-desktop"></i> Data Obat Vaksin Kimia</li>
+				
                 </ol>
                 </div>
                 </div>

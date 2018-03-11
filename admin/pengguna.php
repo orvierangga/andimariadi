@@ -126,7 +126,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 <label for="squaredOne"><span>Tunjukkan <strong>Kata Sandi </strong></span></label>
 </div>
 <button type="submit" class="btn btn-primary" name="add"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
-<a href="data_petugas.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
+<a href="pengguna.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
 </form>
 </div>
 </div>

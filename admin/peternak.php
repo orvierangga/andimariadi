@@ -76,17 +76,23 @@ $ed ="PTR".$tambah;
  //.koding simpan
 if (isset($_POST['add'])) {
 	$idp = $_POST['idp'];
-	$nama = $_POST['nama'];
-	
+	$nama = $_POST['nama'];	
 	$alamat = $_POST['alamat'];
 	$tgllahir = $_POST['tgllahir'];
 	$noktp = $_POST['noktp'];
-	
-  if ($idp != '') {
-		$insert = mysqli_query($koneksi, "INSERT INTO tbpeternak (`IDPeternak`, `NamaPeternak`,`Alamat`,`TanggalLahir`,`NoKTP`) 
-		VALUES ('$idp','$nama','$alamat','$tgllahir','$noktp')") or die(mysqli_error());
+	//coding upload gambar
+	$foto = $_FILES['foto']['name'];
+	$tmp = $_FILES['foto']['tmp_name'];
+	$fotobaru = $_FILES['dmYHis'].$foto;
+	$path = "img/".$fotobaru;
 		
+	
+  if ($idp != '') { 
+		$insert = mysqli_query($koneksi, "INSERT INTO tbpeternak (`IDPeternak`, `NamaPeternak`,`Alamat`,`TanggalLahir`,`NoKTP`,`foto`) 
+		VALUES ('$idp','$nama','$alamat','$tgllahir','$noktp','$fotobaru')") or die(mysqli_error());
+		//$sql = mysqli_query($koneksi,$insert);
 				if($insert) {
+					move_uploaded_file($tmp, $path);
 			echo '<script type="text/javascript">alert("Data Berhasil disimpan") </script>';
 			echo '<meta http-equiv="refresh" content="0; url=./peternak.php" >'; //coding refresh
 			
@@ -120,6 +126,8 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		<input  class="form-control"  name="tgllahir" required="Tidak Boleh Kosong" type="date" placeholder="dd/mm/yyyy">	
 		<label>Nomor KTP</label>
         <input  class="form-control form-white"  name="noktp" required="Tidak Boleh Kosong" placeholder="Enter text">
+		<label>Foto</label>
+        <input   type="file" name="foto" required="Tidak Boleh Kosong" placeholder="Enter text">
 		
         
             <p></p>   <!-- /.Jarak -->

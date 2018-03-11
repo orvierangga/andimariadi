@@ -18,6 +18,7 @@ include '../conn.php';
 	  <th>Afkir</th>
 	  <th>ID OVK</th>
 	  <th>OVK Pakai</th>
+	  <th>Pilihan</th>
 	 
 	 
 	 </tr>
@@ -55,7 +56,9 @@ include '../conn.php';
 		  <td >'.$data[11].'</td>
 		  <td >'.$data[12].'</td>
 		   
-
+<td><a href="editpemeliharaanharian.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
+</td>
+      
 		</tr>';
 		}
       }

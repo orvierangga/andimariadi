@@ -40,11 +40,11 @@ if (isset($_POST['add'])) {
 		<form  action="" method="post" class="col-lg-5">					
                         		
 		<label>Password Lama</label>
-        <input type="password" class="form-control form-white" name="password" placeholder="" required="" >
+        <input type="password" class="form-control form-white" name="password" placeholder="Masukkan Password Lama" required="" >
 		<label>Password baru</label>
-        <input type="password" class="form-control form-white" name="js" placeholder="" required="" >
+        <input type="password" class="form-control form-white" name="js" placeholder="Masukkan Password Baru" required="" >
 		<label>Ulang Password baru</label>
-        <input type="password" class="form-control form-white" name="js1" placeholder="" required="" >
+        <input type="password" class="form-control form-white" name="js1" placeholder="Ketik Ulang Password" required="" >
 			                                
             <p></p>   <!-- /.Jarak -->
        

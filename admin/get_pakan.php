@@ -5,7 +5,7 @@ include '../conn.php';?>
 	<div class="table-responsive">
 	<table class="table table-striped table-hover" bgcolor="#CCCCCC">
     <tr>
-      <th>Id Pakan</th>
+      <th>ID Pakan</th>
       <th>Jenis Pakan</th>
 	  <th>Merek</th>
 	 
@@ -34,8 +34,8 @@ include '../conn.php';?>
         <tr align="center" bgcolor="#CCCCCC">
            
           <td>'.$data[0].'</td>
-          <td align="left">'.$data[1].'</td>
-		   <td align="left">'.$data[2].'</td>
+          <td >'.$data[1].'</td>
+		   <td>'.$data[2].'</td>
 		  
 
 		<td><a href="editpakan.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
@@ -46,9 +46,6 @@ include '../conn.php';?>
     ?>
 	</table>
 	</div>
-<div class="table-responsive">
- <a href="laporan/printbrg.php" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
-</div>
 
 
 

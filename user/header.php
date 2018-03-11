@@ -75,13 +75,13 @@ include "seslogin.php";?>
 				
 				
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username'];?><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username'];?></a>
+                    <!--<ul class="dropdown-menu">
                     <li><a href="#"><i class="fa fa-fw fa-gear"></i> Pengaturan</a></li>
 					<li class="divider"></li>
 					
                     <li><a href="logout.php"><i class="fa fa-fw fa-sign-out"></i> Keluar</a></li>
-                    </ul>
+                    </ul>-->
                 </li>
             </ul>
 			
@@ -94,12 +94,12 @@ include "seslogin.php";?>
             <a href="index.php"><i class="fa fa-lg fa-home"></i> Beranda</a>
             </li>
                    	  
-			<li><a href="panen.php"><i class="fa fa-bar-chart fa-fw"></i> Data Panen</a></li>
+			<li><a href="laporan.php"><i class="fa fa-bar-chart fa-fw"></i> Data Panen</a></li>
 			<li><a href="pemeliharaanharian.php"><i class="fa fa-list fa-fw"></i> Pemeliharaan</a></li>
 			
 			<li><a href="gantipass.php"><i class="fa fa-list fa-fw"></i> Ganti Password</a></li>
 
-			<li><a href="javascript:;"><i class="fa fa-lg fa-info-circle"></i> Bantuan </a></li>		
+			<li><a href="logout.php"><i class="fa fa-lg fa-sign-out"></i> Keluar</a></li>		
 			</ul>
             </div>
             <!-- /.navbar-collapse/ navigasi buka tutup-->

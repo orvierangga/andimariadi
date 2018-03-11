@@ -78,14 +78,9 @@ if ($_SESSION['status'] != 'ADMIN') {
                 </li> -->
 				
 				
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['username'];?><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-fw fa-gear"></i> Profile</a></li>
-					<li class="divider"></li>
-					
-                    <li><a href="logout.php"><i class="fa fa-fw fa-sign-out"></i> Keluar</a></li>
-                    </ul>
+                <li >
+                    <a href="#" ><i class="fa fa-user"></i> <?php echo $_SESSION['username'];?></a>
+                    
                 </li>
             </ul>
 			
@@ -105,7 +100,7 @@ if ($_SESSION['status'] != 'ADMIN') {
 			
 			<li><a href="pengguna.php"><i class="fa fa-users fa-fw"></i> Pengguna</a></li>
 			<li><a href="pegawai.php"><i class="fa fa-user fa-fw"></i> Pegawai</a></li>
-			<li><a href="peternak.php"><i class="fa fa-list fa-fw"></i> Peternak</a></li>			
+			<li><a href="peternak.php"><i class="fa fa-male fa-fw"></i> Peternak</a></li>			
 			<li><a href="panen.php"><i class="fa fa-bar-chart fa-fw"></i> Data Panen</a></li>
 			<li><a href="pemeliharaan.php"><i class="fa fa-calendar fa-fw"></i> Pemeliharaan</a></li>
 			
@@ -115,13 +110,14 @@ if ($_SESSION['status'] != 'ADMIN') {
 			<li>
 			<a  href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-calculator fa-lg"></i> Transaksi<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo1" class="collapse">
-			<li><a href="pengadaanbibit.php"><i class="fa fa-list fa-fw"></i> Pengadaan Bibit</a></li>
+			<li><a href="pengadaanbibit.php"><i class="fa fa-archive fa-fw"></i> Pengadaan Bibit</a></li>
 			<li><a href="penyerahanbibit.php"><i class="fa fa-list fa-fw"></i> Penyerahan Bibit</a></li>
 			<li><a href="penyerahanpakan.php"><i class="fa fa-list fa-fw"></i> Penyerahan Pakan</a></li>
 			<li><a href="penyerahanovk.php"><i class="fa fa-list fa-fw"></i> Penyerahan OVK</a></li>
 			</ul>
 			</li>
-			<li><a href="laporan.php"><i class="fa fa-list"></i> Laporan</a></li>		
+			<li><a href="laporan.php"><i class="fa fa-file fa-fw"></i> Laporan</a></li>	
+			<li><a href="logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>			
 			
 		     
             </div>

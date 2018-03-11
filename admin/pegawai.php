@@ -118,7 +118,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		<label>Tanggal Lahir</label>
 		<input  class="form-control"  name="tgllahir" required="Tidak Boleh Kosong" type="date" placeholder="dd/mm/yyyy">	
 		<label>Nomor Telpon/HP</label>
-        <input  class="form-control form-white" pattern="[0-9]{3}" name="nohp" required="Tidak Boleh Kosong" placeholder="Enter text">
+        <input  class="form-control form-white" pattern="[0-9]*" name="nohp" required="Tidak Boleh Kosong" placeholder="Enter text">
 		
         
             <p></p>   <!-- /.Jarak -->

@@ -46,7 +46,7 @@ include '../conn.php';?>
 			<td >'.$data[3].'</td>
 		  
 		<td><a href="editdatakandang.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
-          <a href="?del='.$data[0].'" class="btn-danger btn-sm" ><span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm(\'Hapus data ini?\')"></span></a></td>
+          <a href="?del='.$data[0].'" class="btn-danger btn-sm" > <span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm(\'Hapus data ini?\')"></span></a></td>
         </tr>';
 		}
       }
@@ -55,10 +55,7 @@ include '../conn.php';?>
 	
 	</div>
 	
-<div class="table-responsive">
- <a href="#" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
-</div>
- 
+
 
 
 

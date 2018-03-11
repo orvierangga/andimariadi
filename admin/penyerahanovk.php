@@ -10,7 +10,9 @@ include '../conn.php';?>
                 <h1 class="page-header">Data Penyerahan OVK <small>Penyerahan OVK (Obat Vaksin Kimia)</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
-                <i class="fa fa-desktop"></i> Data Penyerahan</a></li>
+                <i class="fa fa-desktop"></i> Data Penyerahan OVK</a>
+				<i class="fa fa-desktop"></i><a href="ovk.php"> Data Obat Vaksin Kimia</a></li>
+				
                 </ol>
                 </div>
                 </div>
@@ -109,12 +111,12 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		<label>ID Penyerahan</label>
         <input  class="form-control form-white" name="ipo" placeholder="Enter text" readonly="" value="<?php echo $ed;?>" >	
         <label>ID Produksi</label>       
-        <select class="form-control" span="label label-success" name="idp" required="required">
+        <select class="form-control" span="label label-success" name="idp" id="jenis" required="required">
 		<option required="required" value="">-- Pilih ID Produksi --</option>
 		<?php
-			$q = mysqli_query ($koneksi, "select * from `tbpenyerahanbibit` order by `IDProduksi` ASC");
+			$q = mysqli_query ($koneksi, "SELECT `tbpenyerahanbibit` .* , `tbpeternak`.`NamaPeternak` FROM `tbpenyerahanbibit` LEFT JOIN `tbpeternak` ON `tbpenyerahanbibit`.`IDPeternak` = `tbpeternak`.`IDPeternak` order by `tbpenyerahanbibit`.`IDProduksi` ASC");
 			while ($dat = mysqli_fetch_array ($q)) {
-			echo '<option value="' . $dat[0]. '">' . $dat[0].'. Nama Peternak = '.$dat[1].' - Lokasi = '.$dat[2].'</option>';
+				echo '<option value="' . $dat[0]. '">' . $dat[0].'. ID = '.$dat[1].' - Nama : '.$dat[10].' ( Strain Bibit :'.$dat[3].')</option>';
 			}	
 		?>
 		</select>
@@ -123,10 +125,10 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		<input  class="form-control"  name="tto" required="Tidak Boleh Kosong" type="date" placeholder="dd/mm/yyyy">
 
 		<label>Surat Jalan OVK</label>
-        <input type="int" class="form-control form-white" name="sj" placeholder="Masukkan Angka" required="" >
+        <input type="int" class="form-control form-white" name="sj" placeholder="Nomor Surat Jalan" required="" >
 						
 		<label>Periode</label>
-       <input type="int" class="form-control" name="p" placeholder="Masukkan Angka" required="" >
+       <input type="int" class="form-control" name="p" id="nama_anu" placeholder="Tidak Masuk Periode" readonly >
        
         </br>
 	
@@ -176,6 +178,24 @@ function confirm_delete() {
         }
       }) 
     });
+  })
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#jenis").on("change", function() {
+      var kandang = $("#nama_anu").val();
+      var data = $(this).val();
+      $.ajax({
+        type: 'POST',
+        url: 'combopenyerahanbibit.php',
+        data: 'data=' + data,
+        success:function(data) {
+          $("#nama_anu").val(data);
+          //alert(data);
+        }
+      });
+    });
+
   })
 </script>
 <?php include 'footer.php';?>

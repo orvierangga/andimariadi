@@ -61,13 +61,13 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 ?>
              
 <!--/.form input-->
- <form method="post" class="popup-form col-lg-4">
+ <form method="post" class="popup-form col-lg-5 ">
 
         <label>ID Produksi</label>
-        <input  class="form-control form-white" name="ip" placeholder="Enter text" readonly="" value="<?php echo $data[0];?>" >
+        <input  class="form-control " name="ip" placeholder="Enter text" readonly="" value="<?php echo $data[0];?>" >
         
         <label>ID Peternak</label>
-        <input  class="form-control form-white" name="ip" placeholder="Enter text" readonly="" value="<?php echo $data[1];?>" >
+        <input  class="form-control " name="ip" placeholder="Enter text" readonly="" value="<?php echo $data[1];?>" >
         
 		<label>ID Supplier</label>
 		<select class="form-control" span="label label-success" name="ids" required="required">

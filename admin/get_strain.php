@@ -44,9 +44,6 @@ include '../conn.php';?>
     ?>
 	</table>
 	</div>
-<div class="table-responsive">
- <a href="laporan/printbrg.php" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
-</div>
 
 
 

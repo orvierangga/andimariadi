@@ -43,6 +43,6 @@
 	<div class="footerku_cuy">
  <span class=" glyphicon glyphicon-home"> </span> TERNAK AYAM BROILER KEMITRAAN CV. REHOBOT <span class=" glyphicon glyphicon-road"> </span> Komplek Kelurahan Belimbing Raya Tanjung Kab.Tabalong, Kalimantan Selatan - <span class=" glyphicon glyphicon-phone-alt">  </span>  Call Center : 021-(5520 0876)
 
-
+<div>
 </body>
 </html>

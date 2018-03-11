@@ -40,7 +40,9 @@ include '../conn.php';?>
 		  <td >'.$data[3].'</td>
 		  <td >'.$data[4].'</td>
 
-		<td><a href="editpenyerahanovk.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
+		<td><a href="cetakpenovkper.php?id='.$data[0].'"  target="_blank" class="btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a> 
+        
+		<a href="editpenyerahanovk.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
           <a href="?del='.$data[0].'" class="btn-danger btn-sm" ><span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm(\'Hapus data ini?\')"></span></a></td>
         </tr>';
 		}
@@ -48,9 +50,7 @@ include '../conn.php';?>
     ?>
 	</table>
 	</div>
-<div class="table-responsive">
- <a href="#" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
-</div>
+
 
 
 

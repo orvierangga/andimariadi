@@ -114,7 +114,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
         <select class="form-control" span="label label-success" name="idp" required="required">
 		<option required="required" value="">Pilih</option>
 		<?php
-			$q = mysqli_query ($koneksi, "select * from `tbpeternak` order by `IDPeternak` ASC");
+			$q = mysqli_query ($koneksi, "select * from `tbpeternak` WHERE `IDPeternak` NOT IN (SELECT `IDPeternak` FROM `tbdatakandang`)");
 			while ($data = mysqli_fetch_array ($q)) {
 			echo '<option value="' . $data[0]. '">' . $data[0].'. Nama Peternak = '.$data[1].' - Alamat = '.$data[2].'</option>';
 			}

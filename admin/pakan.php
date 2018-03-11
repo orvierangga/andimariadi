@@ -10,7 +10,8 @@ include '../conn.php';?>
                 <h1 class="page-header">Data Pakan <small>Pakan Ayam Broiler</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
                 <ol class="breadcrumb">
                 <li class="active">
-                <i class="fa fa-desktop"></i> Data Pakan Ayam</li>
+                 <i class="fa fa-desktop"></i><a href="penyerahanpakan.php"> Data Penyerahan Pakan</a></li>
+				<i class="fa fa-desktop"></i> Data Pakan</a></li>
                 </ol>
                 </div>
                 </div>

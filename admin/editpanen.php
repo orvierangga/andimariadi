@@ -61,12 +61,13 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		<label>Tanggal Pengiriman</label>
 		<input  class="form-control"  name="tp" type="date" placeholder="dd/mm/yyyy" value="<?php echo $data[2];?>">
 
-		<label>Jumlah Ayam</label>
-        <input type="text" class="form-control " name="ja" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" value="<?php echo $data[3];?>" >
 		
 		<label>Umur</label>
-        <input type="text" class="form-control " name="u" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" value="<?php echo $data[4];?>" >
+        <input type="text" class="form-control " name="u" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" value="<?php echo $data[3];?>" >
 							
+		<label>Jumlah Ayam</label>
+        <input type="text" class="form-control " name="ja" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" value="<?php echo $data[4];?>" >
+		
 		<label>Total Berat</label>
        <input type="text" class="form-control" name="tb" pattern="[0-9]*" title="Hanya Angka" placeholder="Masukkan Angka" value="<?php echo $data[5];?>" >
        

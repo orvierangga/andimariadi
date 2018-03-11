@@ -4,15 +4,19 @@ include '../conn.php';
 $ud1 = $_GET['id'];?>
 <div id="page-wrapper">
 <div class="container-fluid">
-
+<?php 
+//anu koding seleksi
+$data1 = mysqli_query($koneksi, "SELECT `tbpenyerahanbibit`.*,`tbpenyerahanbibit`.`IDPeternak`,`tbpeternak`.`NamaPeternak`,`tbpeternak`.`Alamat` FROM `tbpenyerahanbibit` LEFT JOIN `tbpeternak` ON `tbpenyerahanbibit`.`IDPeternak` = `tbpeternak`.`IDPeternak` WHERE `tbpenyerahanbibit`.`IDProduksi` ='$ud1'");
+$row = mysqli_num_rows($data1);
+?>
                 <!-- Page Heading -->
                 <div class="row">
                 <div class="col-lg-12">
                 <h1 class="page-header">Data Pemeliharaan <small>Pemeliharaan Ayam</small><small>( <?php echo IndonesiaTgl(date('Y-m-d'));?> )</small></h1>
-                <ol class="breadcrumb">
+             <!-- Page Heading     <ol class="breadcrumb">
                 <li class="active">
 				
-                <i class="fa fa-user"></i> Data Pemelihara : ID peternak, nama peternak ,alamat</li></ol>
+                <i class="fa fa-user"></i> Data Pemelihara : <?php echo $row['IDPeternak'];?>, nama peternak ,alamat</li></ol>-->
 				  <ol class="breadcrumb"><li class="active">
 				
                 <i class="fa fa-paste"></i> Nomor Produksi : <?php echo $ud1;?></li>
@@ -21,11 +25,7 @@ $ud1 = $_GET['id'];?>
                 </div>
 				<div class="dataTable_wrapper">
 				
-<?php 
-//anu koding seleksi
-$data1 = mysqli_query($koneksi, "SELECT * FROM `tbpenyerahanbibit` WHERE `IDProduksi`='$ud1'");
-$row = mysqli_num_rows($data1);
-?>
+
    
   <!-- untuk membuat cari -->
 	<div class="row">

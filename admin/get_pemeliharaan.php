@@ -42,7 +42,7 @@ include '../conn.php';?>
 		   
 
 		<td><a href="pemeliharaanharian.php?id='.$data[0].'"  class="btn-secondary btn-sm"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a> 
-          <a href="cetakpemeliharaan.php?id='.$data[0].'" class="btn-secondary btn-sm" ><span class="glyphicon glyphicon-print" aria-hidden="true" onclick="return confirm(\'Cetak data ini?\')"></span></a></td>
+          <a href="cetakpemeliharaanhar.php?id='.$data[0].'" target="_blank" class="btn-secondary btn-sm" ><span class="glyphicon glyphicon-print" aria-hidden="true" onclick="return confirm(\'Cetak data ini?\')"></span></a></td>
         </tr>';
 		}
       }
@@ -50,7 +50,7 @@ include '../conn.php';?>
 	</table>
 	</div>
 <div class="table-responsive">
- <a href="#" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
+ <a href="cetakpemeliharaanall.php" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
 </div>
 
 

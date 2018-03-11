@@ -53,9 +53,7 @@ include '../conn.php';?>
     ?>
 	</table>
 	</div>
-<div class="table-responsive">
- <a href="#" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
-</div>
+
 
 <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

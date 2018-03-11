@@ -67,7 +67,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
                         <input  class="form-control form-white"  name="status" required="dd" value="<?php echo $data[2];?>">
 						
 						<label>Alamat</label>
-                        <input  class="form-control form-white"  name="alamat" required="dd" value="<?php echo $data[3];?>">
+                        <input  type="text" class="form-control form-white"  name="alamat" required="dd" value="<?php echo $data[3];?>">
 						<label>Tanggal Lahir</label>
                         <input  class="form-control form-white"  name="tgllahir" type="date" required="dd" value="<?php echo $data[4];?>">
 						<label>Nomor Telpon/HP</label>
@@ -78,7 +78,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
                            
                          
  <button type="submit" class="btn btn-primary" name="edt"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
- <a href="peternak.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
+ <a href="pegawai.php" button type="reset" class="btn btn-default"> <span class="glyphicon glyphicon-triangle-right"></span> Kembali</a>
 
  </form>
 <?php include "footer.php";?>

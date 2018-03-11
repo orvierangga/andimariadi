@@ -21,9 +21,9 @@ include '../conn.php';?>
 <ol class="breadcrumb col-lg-2">
 <th class="active" ><span class='glyphicon glyphicon-list'></span> Jumlah Ayam Mati</th></ol>
  
-<a href="#" class="btn btn-info "><span class='glyphicon glyphicon-list'></span>  Jumlah OVK Pakai Perbulan</a>
-<a href="#" class="btn btn-info "><span class='glyphicon glyphicon-list'></span>  Jenis Pakan Terpakai Perbulan</a>
-<a href="#" class="btn btn-info "><span class='glyphicon glyphicon-list'></span>  Jenis Pakan Terpakai Perbulan</a>
+<a href="lapovk.php" class="btn btn-info "><span class='glyphicon glyphicon-list'></span>  Jumlah OVK Pakai</a></ol>
+<a href="lappakan.php" class="btn btn-info "><span class='glyphicon glyphicon-list'></span>  Jumlah Pakan</a></ol>
+<a href="lapbibit.php" class="btn btn-info "><span class='glyphicon glyphicon-list'></span>  Jumlah Bibit Masuk</a></ol>
 
  </div>  
     
@@ -44,10 +44,10 @@ include '../conn.php';?>
     </div>
 	<div class="col-xs-5">	
 	  <select class="form-control col-md-4" span="label label-success" onchange="form.submit()" name="anu" >
-		<option value="">-- Pilih Periode --</option>
+		<option value="">-- Semua Periode --</option>
 		<?php
 		  $anu =  @$_GET['anu'];
-			$q = mysqli_query ($koneksi, "SELECT * FROM `tbpenyerahanbibit` order by `IDProduksi` ASC");
+			$q = mysqli_query ($koneksi, "SELECT * FROM `tbpenyerahanbibit` Group by `Periode` ASC");
 			while ($dat = mysqli_fetch_array ($q)) {
         if ($dat['Periode']== $anu) {
           echo' <option value="'.$dat['Periode'].'" selected>'.$dat['Periode'].'</option>';
@@ -88,7 +88,7 @@ include '../conn.php';?>
           <td>'.$data[7].'</td>
 		  <td align="center">'.$data[11].'</td>
     
-          <td align="center"><a href="lapmati.php?id='.$data[7].'" class="btn-primary btn-sm"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a> 
+          <td align="center"><a href="cetakmatiper.php?id='.$data[7].'" target="_blank" class="btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a> 
           </td>
         </tr>';
         }
@@ -97,13 +97,13 @@ include '../conn.php';?>
   </table>
 
 </div>
-</div>	
+	
 
 
 
 	<div class="table-responsive">
- <a href="laporan/printtotalbm_thn.php" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Semua Data</button><a/>
+ <a href="cetakmatiall.php" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
 </div>
-
+</div> 
 
 <?php include 'footer.php';?>

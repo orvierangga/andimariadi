@@ -25,7 +25,7 @@ include '../conn.php';?>
 
        if (isset($_GET['s'])) {
         $search = $_GET['s'];
-        $sql = mysqli_query($koneksi, "SELECT * From `tbpenyerahanbibit` WHERE `IDProduksi` LIKE '%{$search}%' OR `IDPeternak` LIKE '%{$search}%' OR `IDSupplier` LIKE '%{$search}%' OR `Strain` LIKE '%{$search}%' OR `TanggalChickIn` LIKE '%{$search}%' OR `JumlahChickIn` LIKE '%{$search}%' OR `Harga` LIKE '%{$search}%' OR `Periode` LIKE '%{$search}%' OR `KondisiChickIn` LIKE '%{$search}%' OR `Kandang` LIKE '%{$search}%'order by `IDProduksi` ASC");
+        $sql = mysqli_query($koneksi, "SELECT * From `tbpenyerahanbibit` WHERE `IDProduksi` LIKE '%{$search}%' OR `IDPeternak` LIKE '%{$search}%' OR `IDSupplier` LIKE '%{$search}%' OR `Strain` LIKE '%{$search}%' OR `TanggalChickIn` LIKE '%{$search}%' OR `JumlahChickIn` LIKE '%{$search}%' OR `Harga` LIKE '%{$search}%' OR `Periode` LIKE '%{$search}%' OR `KondisiChickIn` LIKE '%{$search}%' OR `IDDataKandang` LIKE '%{$search}%'order by `IDProduksi` ASC");
           } else {
           $sql = mysqli_query($koneksi, "SELECT * From `tbpenyerahanbibit` order by `IDProduksi` asc");
           }
@@ -50,17 +50,16 @@ include '../conn.php';?>
 		  <td >'.$data[8].'</td> 
 		  <td >'.$data[9].'</td> 
 
-		<td><a href="editpenyerahanbibit.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
-          <a href="?del='.$data[0].'" class="btn-danger btn-sm" ><span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm(\'Hapus data ini?\')"></span></a></td>
+		<td><a href="cetakpenbibitper.php?id='.$data[0].'"  target="_blank" class="btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a> 
+        <a href="editpenyerahanbibit.php?id='.$data[0].'"  class="btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
+         <a href="?del='.$data[0].'" class="btn-danger btn-sm" ><span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="return confirm(\'Hapus data ini?\')"></span></a></td>
         </tr>';
 		}
       }
     ?>
 	</table>
 	</div>
-<div class="table-responsive">
- <a href="#" target="_blank" class="btn btn-primary" name="simpan"><span class="glyphicon glyphicon-print"></span> Cetak Data</button><a/>
-</div>
+
 
 
 

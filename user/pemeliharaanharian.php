@@ -48,7 +48,7 @@ $tambah = $kode+1;
 if ($tambah<10){
 $ed = "PH0".$tambah;
 }else {
-$ed ="PH0".$tambah;
+$ed ="PH".$tambah;
 }
  //.koding simpan
 if (isset($_POST['add'])) {
@@ -120,7 +120,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		 <label>Umur</label> 
     </div>
 	<div class="col-md-2" >
-		<input class="form-control form-white" name="u" value="" required>
+		<input class="form-control form-white" name="u" pattern="[0-9]*" placeholder="Sesuai Hari" value="" required>
     </div>
 		
 	<div class="col-md-2" >
@@ -128,7 +128,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
     </div>
 	
 	 <div class="col-md-2" >
-		<input class="form-control" name="mk" value="" required>
+		<input class="form-control" name="mk" pattern="[0-9]*" placeholder="Hitung Minggu" value="" required>
     </div> 
 	<div class="col-md-1" >
 		 <label>Tanggal</label>
@@ -143,20 +143,20 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		 <label>Mati</label> 
     </div>
 	<div class="col-md-2" >
-		<input class="form-control form-white" name="mati" value="" required>
+		<input class="form-control form-white" name="mati" pattern="[0-9]*" placeholder="Jumlah Satuan" value="" required>
     </div>
 	<div class="col-md-2" >
 		 <label>Pakan Std</label> 
     </div>
 	<div class="col-md-2" >
-		<input class="form-control form-white" name="ps" value="" required>
+		<input class="form-control form-white" name="ps" pattern="[0-9]*" placeholder="Jumlah Satuan" value="" required>
     </div>
 	
 		<div class="col-md-2" >
 		 <label>Pakan Act</label> 
     </div>
 	<div class="col-md-2" >
-		<input class="form-control form-white" name="pa" value="" required>
+		<input class="form-control form-white" name="pa" pattern="[0-9]*" placeholder="Jumlah Satuan" value="" required>
     </div>
 	
 	
@@ -168,29 +168,47 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 	<label>Culling</label> 
     </div>
 	<div class="col-md-2" >
-		<input class="form-control form-white" name="cul" value="" required>
+		<input class="form-control form-white" name="cul" pattern="[0-9]*" placeholder="Jumlah Satuan" value="" required>
+    </div>
+	
+	
+	<div class="col-md-2" >
+		 <label>IDovk</label> 
+    </div>
+	<div class="col-md-2" >
+		
+		<select class="form-control" name="ovk" required="required">
+		<option required="required" value="0">-- Pilih --</option>
+		<?php
+			$q = mysqli_query ($koneksi, "SELECT * FROM `tbovk` Order by `IDOVK` asc");
+			while ($dat = mysqli_fetch_array ($q)) {
+			echo '<option value="'. $dat['IDOVK'].'">'.$dat['IDOVK'].' : '.$dat['NamaOVK'].'  ('.$dat[2].')</option>';
+			}
+		?>
+		</select>
     </div>
 	<div class="col-md-2" >
 		 <label>Jenis Pakan</label> 
     </div>
-	<div class="col-md-3" >
-		<input class="form-control form-white" name="ip" value="" required>
-    </div>
-	
-	<div class="col-md-1" >
-		 <label>IDovk</label> 
-    </div>
 	<div class="col-md-2" >
-		<input class="form-control form-white" name="ovk" value="" required>
+		
+		<select class="form-control" name="ip" required="required">
+		<option required="required" value="0">-- Pilih --</option>
+		<?php
+			$q = mysqli_query ($koneksi, "SELECT * FROM `tbpakan` Order by `IDPakan` asc");
+			while ($dat = mysqli_fetch_array ($q)) {
+			echo '<option value="'. $dat['IDPakan'].'">'.$dat['JenisPakan'].'  ('.$dat['Merek'].')</option>';
+			}
+		?>
+		</select>
     </div>
-	
 	
 	<br></br>
 	<div class="col-md-1" >
 		 <label>Afkir</label> 
     </div>
 	<div class="col-md-2" >
-		<input class="form-control form-white" name="afkir" value="" required>
+		<input class="form-control form-white" name="afkir" pattern="[0-9]*" placeholder="Jumlah Satuan" value="" required>
     </div>
 	
 	
@@ -198,7 +216,7 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
 		 <label>OVK Pakai</label> 
     </div>
 	<div class="col-md-2" >
-		<input class="form-control form-white" name="ovkp" value="" required>
+		<input class="form-control form-white" name="ovkp" pattern="[0-9]*" placeholder="Jumlah Satuan" value="" required>
     </div>
 	
 	<div class="col-md-4" align="right">
@@ -213,10 +231,9 @@ $minage = date("Y-m-d", strtotime('- 40 year', $now));
     <div class="col-xs-9">
     <input type="text" name="s" class="form-control" placeholder="Cari.." id="isi_cari">
     </div>
-    <div class="col-xs-1" align="right"><a href="#" class="btn btn-success" id="cari_reload"><span class="glyphicon glyphicon-search" > </span> Cari</a>
+    <div class="col-md-2" align="right"><a href="#" class="btn btn-success" id="cari_reload"><span class="glyphicon glyphicon-search" > </span> Cari</a>
     </div>
-	<div class="col-xs-1" align="left"><a href="#" class="btn btn-secondary" id="cari_reload"><span class="glyphicon glyphicon-print" > </span> Cetak</a>
-    </div>
+
 	</div> 
 	
 
